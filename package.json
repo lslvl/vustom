@@ -1,6 +1,15 @@
 {
-  "private": true,
+  "name": "@lslvl/vustom",
+  "version": "1.0.0",
+  "repository": "git://github.com/lslvl/vustom.git",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "devDependencies": {
     "vue": "^3.2.33"
+  },
+  "engines": {
+    "node": "17.9.0",
+    "npm": "8.5.5"
   }
 }

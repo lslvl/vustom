@@ -1,5 +1,5 @@
 <template>
-
-  Vustom template
+  
+  <slot></slot>
 
 </template>

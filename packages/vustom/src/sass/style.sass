@@ -1,0 +1,52 @@
+@import 'base/colors.scss'
+
+$prefix: vustom !default
+
+@function getColor($scheme, $tone: base)
+  @return map-get(map-get($colors-map, $scheme), $tone)
+
+$color-h: 200
+$color-s: 20
+
+body
+  --#{$prefix}-fill: white
+  --#{$prefix}-fill-hover: hsl(200, 15%, 98%)
+  --#{$prefix}-fill-border: hsl(200, 40%, 93%)
+
+  --#{$prefix}-fill-1: hsl(200, 15%, 98%)
+  --#{$prefix}-fill-1-hover: hsl(200, 15%, 98%)
+  --#{$prefix}-fill-1-border: hsl(200, 40%, 83%)
+
+  --#{$prefix}-fill-2: hsl(200, 15%, 78%)
+  --#{$prefix}-fill-2-hover: hsl(200, 15%, 68%)
+  --#{$prefix}-fill-2-border: hsl(200, 40%, 53%)
+
+  --#{$prefix}-shadow-1: 0 0 5px rgba(0,0,0,.1)
+  --#{$prefix}-shadow-2: 0 0 5px rgba(0,0,0,.1)
+  --#{$prefix}-shadow-3: 0 0 5px rgba(0,0,0,.1)
+  --#{$prefix}-shadow-4: 0 0 5px rgba(0,0,0,.1)
+  --#{$prefix}-shadow-5: 0 0 10px hsl(200, 40%, 3%, .1)
+  --#{$prefix}-shadow-6: 0 0 5px rgba(0,0,0,.1)
+  --#{$prefix}-shadow-7: 0 0 5px rgba(0,0,0,.1)
+  --#{$prefix}-shadow-8: 0 0 5px rgba(0,0,0,.1)
+  --#{$prefix}-shadow-9: 0 0 5px rgba(0,0,0,.1)
+
+  --#{$prefix}-color-1: hsl(#{$color-h}, #{$color-s}%, 90%)
+  --#{$prefix}-color-2: hsl(#{$color-h}, #{$color-s}%, 80%)
+  --#{$prefix}-color-3: hsl(#{$color-h}, #{$color-s}%, 70%)
+  --#{$prefix}-color-4: hsl(#{$color-h}, #{$color-s}%, 60%)
+  --#{$prefix}-color-5: hsl(#{$color-h}, #{$color-s}%, 50%)
+  --#{$prefix}-color-6: hsl(#{$color-h}, #{$color-s}%, 40%)
+  --#{$prefix}-color-7: hsl(#{$color-h}, #{$color-s}%, 30%)
+  --#{$prefix}-color-8: hsl(#{$color-h}, #{$color-s}%, 20%)
+  --#{$prefix}-color-9: hsl(#{$color-h}, #{$color-s}%, 10%)
+
+  --#{$prefix}-font-size-1: 10px
+  --#{$prefix}-font-size-2: 13px
+  --#{$prefix}-font-size-3: .875rem
+  --#{$prefix}-font-size-4: 1rem
+  --#{$prefix}-font-size-5: 1.125rem
+  --#{$prefix}-font-size-6: 1.25rem
+  --#{$prefix}-font-size-7: 1.5rem
+  --#{$prefix}-font-size-8: 2rem
+  --#{$prefix}-font-size-9: 2.5rem
