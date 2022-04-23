@@ -1,12 +1,28 @@
 <template>
   <div
-    v-ripple
+    v-ripple="!($slots.control)"
     class="list-item"
-    :class="[disabled ? 'disabled' : '', color]">
+    :class="[
+      !($slots.control) ? 'clickable' : '',
+      !($slots.control) ? 'hoverable' : '',
+      (!$slots.control &&  $slots.content) ? 'not-centered-v' : '',
+      disabled ? 'disabled' : '',
+      color
+    ]">
     <div class="icon" v-if="$slots.icon">
       <slot name="icon"></slot>
     </div>
-    <slot></slot>
+    <div class="control" v-if="$slots.control">
+      <slot name="control"></slot>
+    </div>
+    <div :class="[$slots.content ? 'with-content' : '']">
+      <div class="slot">
+        <slot></slot>
+      </div>
+      <div class="content" v-if="$slots.content">
+        <slot name="content"></slot>
+      </div>
+    </div>
   </div>
 </template>
 

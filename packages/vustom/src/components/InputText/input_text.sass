@@ -1,0 +1,127 @@
+@import '../../sass/style.sass'
+
+$input-text-height: 3rem
+$input-text-radius: 10px
+$input-text-padding: .75rem
+
+input[type=text]
+  background-color: none
+  background-image: none
+  background: transparent
+  background-color: transparent
+  border: 0
+  border-radius: 0
+  box-shadow: none
+  color: var(--#{$prefix}-color-8)
+  overflow: hidden
+  font-family: 'Inter'
+  font-size: 1rem
+  font-weight: 400
+  outline: none
+  line-height: 1rem
+  padding: 0
+  position: relative
+  resize: none
+
+.input
+  align-items: flex-end
+  display: flex
+  border: 1px solid transparent
+  // border-radius: $input-text-radius
+  border-bottom: 1px solid var(--#{$prefix}-fill-border)
+  height: $input-text-height
+  overflow: hidden
+  position: relative
+  &:focus-within
+    border-bottom-color: $primary
+    & > .input-control
+      & > label
+        color: $primary !important
+    // box-shadow: var(--#{$prefix}-shadow-3)
+  @each $color, $map in $colors-map
+    &.#{$color}
+      border-bottom-color: getColor($color, base)
+      & > .input-control
+        & > label
+          color: getColor($color, base) !important
+        & > .input-control__body
+          flex: 1
+          & > input
+            caret-color: getColor($color, base) !important
+  &.disabled
+    // background-color: var(--#{$prefix}-fill-1)
+    & label
+      color: var(--#{$prefix}-color-2) !important
+    & input
+      color: var(--#{$prefix}-color-2)
+
+.input-tip
+  content: ''
+  display: block
+  color: var(--#{$prefix}-color-4)
+  font-size: var(--#{$prefix}-font-size-1)
+  position: absolute
+  top: .375rem
+  right: $input-text-padding
+
+.input-control
+  align-items: flex-end
+  display: flex
+  height: $input-text-height
+  flex: 1
+  position: relative
+  & > .input-control__body
+    flex: 1
+    & > input
+      box-sizing: border-box
+      caret-color: $primary
+      display: block
+      height: 2rem
+      font-weight: 500
+      // padding: 0 $input-text-padding
+      padding-bottom: .125rem
+      width: 100%
+      &::placeholder
+        color: var(--#{$prefix}-color-4)
+        font-size: var(--#{$prefix}-font-size-3)
+  & > label
+    color: var(--#{$prefix}-color-4)
+    font-size: var(--#{$prefix}-font-size-1)
+    font-weight: 500
+    display: inline
+    // top: .375rem
+    top: .25rem
+    // left: $input-text-padding
+    position: absolute
+    transition: .2s
+    transition-timing-function: ease-in-out
+    &.active
+      color: var(--#{$prefix}-color-4)
+      font-size: var(--#{$prefix}-font-size-4)
+      font-weight: 400
+      top: calc($input-text-height / 2)
+      transform: translateY(-50%)
+
+.input-prepend,
+.input-append
+  align-items: center
+  background-color: var(--#{$prefix}-fill-1)
+  color: var(--#{$prefix}-color-6)
+  display: flex
+  justify-content: center
+  height: 100%
+  padding: 0 .5rem
+  min-width: 1.75rem
+
+.input-prepend
+  border-right: 1px solid var(--#{$prefix}-fill-border)
+  margin-right: .75rem
+
+.input-append
+  border-left: 1px solid var(--#{$prefix}-fill-border)
+
+.input-errors
+  margin: .5rem 0
+  font-size: var(--#{$prefix}-font-size-2)
+  & > .input-error
+    color: $danger

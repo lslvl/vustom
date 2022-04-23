@@ -5,23 +5,43 @@
   background-color: var(--#{$prefix}-fill)
   border-radius: 3px
   color: var(--#{$prefix}-color-8)
-  cursor: pointer
   display: flex
   min-height: 2.6rem
   padding: 0 .75rem
   transition: .3s
-  &:hover
+  &.hoverable:hover
     background-color: var(--#{$prefix}-fill-hover)
+  &.clickable
+    cursor: pointer
+  &.not-centered-v
+    align-items: flex-start
+    padding: .8rem
+    & > .icon
+      margin-top: .1rem
   & > .icon
+    color: var(--#{$prefix}-color-4)
     height: 1.125rem
     width: 2rem
     & svg
       height: 100%
+  & > .control
+    height: 1.125rem
+    margin-right: .5rem
+    min-width: 2.5rem
+  & > .with-content
+    & > .slot
+      font-weight: 600
+    & > .content
+      margin-top: .5rem
   @each $color, $map in $colors-map
     &.#{$color}
       background-color: getColor($color, invertBase)
       color: getColor($color, invertEl)
+      &.hoverable:hover
+        background-color: opacify(getColor($color, invertBase), .05)
   &.disabled
     background-color: var(--#{$prefix}-fill-1)
     color: var(--#{$prefix}-color-2)
     pointer-events: none
+    & > .icon
+      color: var(--#{$prefix}-color-2)

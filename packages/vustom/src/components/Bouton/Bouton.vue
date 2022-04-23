@@ -10,7 +10,7 @@
     <div class="icon" v-if="$slots.icon">
       <slot name="icon"></slot>
     </div>
-    <span>{{ name }}</span>
+    <slot>{{ name }}</slot>
   </div>
 </template>
 

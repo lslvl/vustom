@@ -1,0 +1,36 @@
+@import '../../sass/style.sass'
+
+$checkbox-size: 1.125rem
+
+.checkbox
+  & > label
+    align-items: center
+    background-color: var(--#{$prefix}-fill-1)
+    border: none
+    border-radius: 3px
+    cursor: pointer
+    display: flex
+    justify-content: center
+    user-select: none
+    height: $checkbox-size
+    width: $checkbox-size
+    &:hover
+      background-color: var(--#{$prefix}-fill-1-hover)
+    & > .icon
+      color: var(--#{$prefix}-color-4)
+      font-weight: 500
+  & > input:checked
+    & + label
+      background-color: $primary
+      color: $primary
+      & > .icon
+        color: white
+  & > input[type='checkbox']
+    display: none
+  @each $color, $map in $colors-map
+    &.#{$color}
+      & > input:checked
+        & + label
+          background-color: getColor($color, base)
+          & > .icon
+            color: getColor($color, el)

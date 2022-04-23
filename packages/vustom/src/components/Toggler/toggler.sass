@@ -1,0 +1,55 @@
+@import '../../sass/style.sass'
+
+$toggler-size: 1rem
+$toggler-gap: 3px
+$toggler-track-ratio: 1.5
+
+.toggler
+  position: relative
+  display: inline-block
+  height: calc($toggler-size + 2 * $toggler-gap)
+  width: calc($toggler-track-ratio * $toggler-size + 2 * $toggler-gap)
+  @each $color, $map in $colors-map
+    &.#{$color}
+      & input:checked + span
+        background-color: getColor($color, invertBase) !important
+        &::before
+          background-color: getColor($color, base) !important
+
+.toggler input
+  outline: none
+  opacity: 0
+  width: 0
+  height: 0
+
+.toggler > span
+  position: absolute
+  cursor: pointer
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  background-color: var(--#{$prefix}-fill-2)
+  transition: .4s
+
+.toggler > span:before
+  background-color: white
+  content: ''
+  height: $toggler-size
+  position: absolute
+  left: $toggler-gap
+  bottom: $toggler-gap
+  transition: .4s
+  width: $toggler-size
+
+.toggler input:checked + span
+  background-color: getColor(primary, invertBase)
+
+.toggler input:checked + span:before
+  background-color: $primary
+  transform: translateX($toggler-size*($toggler-track-ratio - 1))
+
+.toggler > .thumb
+  border-radius: $toggler-size
+.toggler > .thumb:before
+  border-radius: 50%
