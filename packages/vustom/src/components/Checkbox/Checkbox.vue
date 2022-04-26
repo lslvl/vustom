@@ -10,7 +10,5 @@
 </template>
 
 <script setup>
-import './checkbox.sass'
-
 const props = defineProps(['id', 'checked', 'color', 'disabled'])
 </script>

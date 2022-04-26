@@ -1,14 +1,8 @@
 @import '../../sass/style.sass'
 
-@keyframes spinAroundLoader
-  from
-    transform: rotate(0deg)
-  to
-    transform: rotate(359deg)
-
 // height is 2px heigher
 // to have a total ripple effect without borders
-$bouton-height: 2.5rem
+$bouton-height: 2.5rem !default
 
 .bouton
   align-items: center
@@ -123,3 +117,9 @@ $bouton-height: 2.5rem
   &.block
     display: block
     width: 100%
+
+@keyframes spinAroundLoader
+  from
+    transform: rotate(0deg)
+  to
+    transform: rotate(359deg)

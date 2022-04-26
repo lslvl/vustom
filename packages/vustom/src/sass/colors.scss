@@ -1,0 +1,103 @@
+// Custom all vustom variables
+$primary: rgb(66,161,240) !default;
+$secondary: rgb(217,25,198) !default;
+$success: rgb(31,221,166) !default;
+$danger: #c81212 !default;
+$alert: rgb(255,152,90) !default;
+$info: rgb(66,161,240) !default;
+
+$light-ratio: 20;
+$dark-ratio: 10;
+$transparent-ratio: .85;
+
+$primary-content: black;
+$primary-extra-content: black;
+$primary-invert: transparentize($primary, $transparent-ratio);
+$primary-invert-content: darken($primary, 22);
+$primary-invert-extra-content: darken($primary, 22);
+
+$secondary-content: white;
+$secondary-extra-content: rgb(67,77,95);
+$secondary-invert: transparentize($secondary, $transparent-ratio);
+$secondary-invert-content: $secondary;
+$secondary-invert-extra-content: $secondary;
+
+$tertiary-content: white;
+$tertiary-extra-content: rgb(67,77,95);
+$tertiary-invert: transparentize($secondary, $transparent-ratio);
+$tertiary-invert-content: $secondary;
+$tertiary-invert-extra-content: $secondary;
+
+$success-content: white;
+$success-extra-content: lighten($success, $light-ratio);
+$success-invert: transparentize($success, $transparent-ratio);
+$success-invert-content: rgb(10, 179, 130);
+$success-invert-extra-content: rgb(10, 179, 130);
+
+$danger-content: white;
+$danger-extra-content: lighten($danger, $light-ratio);
+$danger-invert: transparentize($danger, .9);
+$danger-invert-content: #e62c2c;
+$danger-invert-extra-content: #e62c2c;
+
+$alert-content: white;
+$alert-extra-content: lighten($alert, $light-ratio);
+$alert-invert: transparentize($alert, $transparent-ratio);
+$alert-invert-content: $alert;
+$alert-invert-extra-content: $alert;
+
+$info-content: white;
+$info-extra-content: lighten($info, $light-ratio);
+$info-invert: transparentize($info, $transparent-ratio);
+$info-invert-content: $info;
+$info-invert-extra-content: $info;
+
+// base: the given color
+// el: content over the base
+// extra: could be an icon close to el
+// invertBase: inverted base color
+// invertEL: inverted el color
+$colors-map: (
+  primary: (
+    base: $primary,
+    el: $primary-content,
+    extra: $primary-extra-content,
+    invertBase: $primary-invert,
+    invertEl: $primary-invert-content
+  ),
+  secondary: (
+    base: $secondary,
+    el: $secondary-content,
+    extra: $secondary-extra-content,
+    invertBase: $secondary-invert,
+    invertEl: $secondary-invert-content
+  ),
+  success: (
+    base: $success,
+    el: $success-content,
+    extra: $success-extra-content,
+    invertBase: $success-invert,
+    invertEl: $success-invert-content
+  ),
+  danger: (
+    base: $danger,
+    el: $danger-content,
+    extra: $danger-extra-content,
+    invertBase: $danger-invert,
+    invertEl: $danger-invert-content
+  ),
+  alert: (
+    base: $alert,
+    el: $alert-content,
+    extra: $alert-extra-content,
+    invertBase: $alert-invert,
+    invertEl: $alert-invert-content
+  ),
+  info: (
+    base: $info,
+    el: $info-content,
+    extra: $info-extra-content,
+    invertBase: $info-invert,
+    invertEl: $info-invert-content
+  )
+);

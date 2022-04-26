@@ -26,8 +26,6 @@
 </template>
 
 <script setup>
-import './bouton.sass'
-
 const props = defineProps({
   name: String,
   color: String,

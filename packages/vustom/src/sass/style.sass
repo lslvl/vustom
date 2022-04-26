@@ -1,9 +1,6 @@
-@import base/all
+@import 'colors.scss'
 
 $prefix: vustom !default
-
-@function getColor($scheme, $tone: base)
-  @return map-get(map-get($colors-map, $scheme), $tone)
 
 $color-h: 200
 $color-s: 5
@@ -100,3 +97,6 @@ body[theme=dark]
   --#{$prefix}-color-6: hsl(200, 6%, 30%)
   --#{$prefix}-color-7: hsl(200, 6%, 20%)
   --#{$prefix}-color-8: hsl(200, 6%, 10%)
+
+@function getColor($scheme, $tone: base)
+  @return map-get(map-get($colors-map, $scheme), $tone)
