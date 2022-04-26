@@ -8,9 +8,11 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },
-  "devDependencies": {
-    "vue": "^3.2.33",
+  "dependencies": {
     "mitt": "^3.0.0"
+  },
+  "devDependencies": {
+    "vue": "^3.2.33"
   },
   "engines": {
     "node": "17.9.0",
