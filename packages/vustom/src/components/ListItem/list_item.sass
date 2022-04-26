@@ -41,6 +41,8 @@
       color: getColor($color, invertEl)
       &.hoverable:hover
         background-color: opacify(getColor($color, invertBase), .05)
+      & > .icon
+        color: getColor($color, invertEl)
   &.disabled
     background-color: var(--#{$prefix}-fill-1)
     color: var(--#{$prefix}-color-2)
