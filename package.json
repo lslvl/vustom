@@ -1,6 +1,6 @@
 {
   "name": "@lslvl/vustom",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "...coming soon",
   "author": "Louis Laviale <louis.laviale@gmail.com>",
   "main": "packages/vustom/src/install.ts",
