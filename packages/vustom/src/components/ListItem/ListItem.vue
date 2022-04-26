@@ -15,13 +15,16 @@
     <div class="control" v-if="$slots.control">
       <slot name="control"></slot>
     </div>
-    <div :class="[$slots.content ? 'with-content' : '']">
+    <div :class="[$slots.content ? 'with-content' : 'no-content']">
       <div class="slot">
         <slot></slot>
       </div>
       <div class="content" v-if="$slots.content">
         <slot name="content"></slot>
       </div>
+    </div>
+    <div class="extra" v-if="$slots.extra">
+      <slot name="extra"></slot>
     </div>
   </div>
 </template>

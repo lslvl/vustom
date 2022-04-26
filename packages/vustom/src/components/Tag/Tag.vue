@@ -1,7 +1,7 @@
 <template>
-  <button
-    v-ripple
-    class="bouton"
+  <span
+    v-ripple="clickable"
+    class="tag"
     :class="[
       loading ? 'loading' : '',
       disabled ? 'disabled' : '',
@@ -15,18 +15,27 @@
       large ? 'large' : '',
       huge ? 'huge' : '',
       block ? 'block' : '',
+      hoverable || clickable ? 'hoverable' : '',
+      deletable ? 'deletable' : '',
       color]"
     :disabled="disabled"
-    :type="type">
+    @click="onClick()">
     <div class="icon" v-if="$slots.icon">
       <slot name="icon"></slot>
     </div>
     <slot>{{ name }}</slot>
-  </button>
+    <div class="delete" v-if="deletable" @click.stop="onDelete()">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </div>
+  </span>
 </template>
 
 <script setup>
-import './bouton.sass'
+import './tag.sass'
+
+const emit = defineEmits(['delete', 'click'])
 
 const props = defineProps({
   name: String,
@@ -43,6 +52,15 @@ const props = defineProps({
   large: Boolean,
   huge: Boolean,
   block: Boolean,
-  type: { type: String, default: 'button'}
+  clickable: Boolean,
+  hoverable: Boolean,
+  deletable: Boolean
 })
+
+function onClick() {
+  emit('click')
+}
+function onDelete() {
+  emit('delete')
+}
 </script>

@@ -1,44 +1,49 @@
 <template>
 
-  <div class="input-container">
+  <div class="field-container">
 
-    <div class="input" :class="[
+    <div class="field" :class="[
       color,
       errors ? 'danger' : '',
       disabled ? 'disabled' : ''
     ]">
-      <div class="input-prepend" v-if="$slots.prepend">
+      <div class="field-prepend" v-if="$slots.prepend">
         <slot name="prepend"></slot>
       </div>
-      <div class="input-control">
+      <div class="field-control">
         <label :for="id" :class="[
-          focused || modelValue.length || placeholder.length ? '' : 'active'
+          focused ||
+          (typeof modelValue === 'number' && modelValue > 0) ||
+          (typeof modelValue === 'string' && modelValue.length > 0) ||
+          placeholder.length ? '' : 'inside'
         ]">
           <span class="icon"></span>
           <slot></slot>
         </label>
-        <div class="input-tip" v-if="$slots.tip">
+        <div class="field-tip" v-if="$slots.tip">
           <slot name="tip"></slot>
         </div>
-        <div class="input-control__body">
+        <div class="field-control__body">
           <input
-            type="text"
+            :type="type"
             :id="id"
             :value="modelValue"
             :placeholder="placeholder"
             :disabled="disabled"
+            :min="min"
+            :max="max"
             @input="$emit('update:modelValue', $event.target.value)"
             @focus="onFocus()"
             @blur="onBlur()"/>
         </div>
       </div>
-      <div class="input-append" v-if="$slots.append">
+      <div class="field-append" v-if="$slots.append">
         <slot name="append"></slot>
       </div>
     </div>
 
-    <div class="input-errors" v-if="errors">
-      <div class="input-error" v-for="error in errors">
+    <div class="field-errors" v-if="errors">
+      <div class="field-error" v-for="error in errors">
         <span>{{ error }}</span>
       </div>
     </div>
@@ -48,16 +53,19 @@
 </template>
 
 <script setup>
-import './input_text.sass'
+import './field.sass'
 import { computed, ref } from 'vue'
 
 const props = defineProps({
-  modelValue: { type: String, default: '' },
+  type: { type: String, default: 'text' },
+  modelValue: { type: [String, Number] },
   id: String,
   placeholder: { type: String, default: '' },
   color: String,
   disabled: Boolean,
-  errors: Array
+  errors: Array,
+  min: Number,
+  max: Number
 })
 const emit = defineEmits(['update:modelValue'])
 

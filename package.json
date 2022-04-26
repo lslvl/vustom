@@ -6,7 +6,8 @@
     "registry": "https://npm.pkg.github.com"
   },
   "devDependencies": {
-    "vue": "^3.2.33"
+    "vue": "^3.2.33",
+    "mitt": "^3.0.0"
   },
   "engines": {
     "node": "17.9.0",

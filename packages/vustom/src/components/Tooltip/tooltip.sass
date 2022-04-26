@@ -1,0 +1,63 @@
+@import '../../sass/style.sass'
+
+$tooltip-background: rgb(8,24,40)
+
+.tooltip
+  border-radius: 3px
+  font-size: 1rem
+  position: fixed
+  visibility: hidden
+  max-width: 22rem
+  z-index: 10000
+  &.raw
+    max-width: 100%
+    & .tooltip-arrow
+      display: none
+    & .tooltip-inner
+      background-color: transparent
+      color: black
+      border-radius: 0
+      padding: 0
+  &.active
+    visibility: visible
+  .tooltip-inner
+    background: $tooltip-background
+    color: white
+    display: block
+    border-radius: 3px
+    padding: .5rem .8rem
+    position: relative
+    z-index: 10000
+  .tooltip-arrow
+    left: 50%
+    transform: translateX(-50%)
+    width: 0
+    height: 0
+    border-style: solid
+    position: absolute
+    border-color: $tooltip-background
+    z-index: 1
+    &.bottom
+      top: calc(100%)
+      border-width: 5px 5px 0 5px
+      border-left-color: transparent !important
+      border-right-color: transparent !important
+      border-bottom-color: transparent !important
+    &.top
+      bottom: calc(100%)
+      border-width: 0 5px 5px 5px
+      border-left-color: transparent !important
+      border-right-color: transparent !important
+      border-top-color: transparent !important
+    &.right
+      left: calc(100% - 15px)
+    &.left
+      left: 15px
+    &.none
+      display: none
+  @each $color, $map in $colors-map
+    &.#{$color}
+      & .tooltip-inner
+        background-color: getColor($color, base)
+      & .tooltip-arrow
+        border-color: getColor($color, base)

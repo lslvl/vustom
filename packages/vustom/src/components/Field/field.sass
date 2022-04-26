@@ -1,10 +1,12 @@
 @import '../../sass/style.sass'
 
-$input-text-height: 3rem
-$input-text-radius: 10px
-$input-text-padding: .75rem
+$field-text-height: 3rem
+$field-text-radius: 10px
+$field-text-padding: .75rem
 
-input[type=text]
+input[type=text],
+input[type=password],
+input[type=number]
   background-color: none
   background-image: none
   background: transparent
@@ -23,28 +25,32 @@ input[type=text]
   position: relative
   resize: none
 
-.input
+input[type=password]
+  font-size: .5rem
+  letter-spacing: 2px
+
+.field
   align-items: flex-end
   display: flex
   border: 1px solid transparent
-  // border-radius: $input-text-radius
+  // border-radius: $field-text-radius
   border-bottom: 1px solid var(--#{$prefix}-fill-border)
-  height: $input-text-height
+  height: $field-text-height
   overflow: hidden
   position: relative
   &:focus-within
     border-bottom-color: $primary
-    & > .input-control
+    & > .field-control
       & > label
         color: $primary !important
     // box-shadow: var(--#{$prefix}-shadow-3)
   @each $color, $map in $colors-map
     &.#{$color}
       border-bottom-color: getColor($color, base)
-      & > .input-control
+      & > .field-control
         & > label
           color: getColor($color, base) !important
-        & > .input-control__body
+        & > .field-control__body
           flex: 1
           & > input
             caret-color: getColor($color, base) !important
@@ -55,22 +61,22 @@ input[type=text]
     & input
       color: var(--#{$prefix}-color-2)
 
-.input-tip
+.field-tip
   content: ''
   display: block
   color: var(--#{$prefix}-color-4)
   font-size: var(--#{$prefix}-font-size-1)
   position: absolute
   top: .375rem
-  right: $input-text-padding
+  right: $field-text-padding
 
-.input-control
+.field-control
   align-items: flex-end
   display: flex
-  height: $input-text-height
+  height: $field-text-height
   flex: 1
   position: relative
-  & > .input-control__body
+  & > .field-control__body
     flex: 1
     & > input
       box-sizing: border-box
@@ -78,7 +84,7 @@ input[type=text]
       display: block
       height: 2rem
       font-weight: 500
-      // padding: 0 $input-text-padding
+      // padding: 0 $field-text-padding
       padding-bottom: .125rem
       width: 100%
       &::placeholder
@@ -91,19 +97,19 @@ input[type=text]
     display: inline
     // top: .375rem
     top: .25rem
-    // left: $input-text-padding
+    // left: $field-text-padding
     position: absolute
     transition: .2s
     transition-timing-function: ease-in-out
-    &.active
+    &.inside
       color: var(--#{$prefix}-color-4)
       font-size: var(--#{$prefix}-font-size-4)
       font-weight: 400
-      top: calc($input-text-height / 2)
+      top: calc($field-text-height / 2)
       transform: translateY(-50%)
 
-.input-prepend,
-.input-append
+.field-prepend,
+.field-append
   align-items: center
   background-color: var(--#{$prefix}-fill-1)
   color: var(--#{$prefix}-color-6)
@@ -113,15 +119,15 @@ input[type=text]
   padding: 0 .5rem
   min-width: 1.75rem
 
-.input-prepend
+.field-prepend
   border-right: 1px solid var(--#{$prefix}-fill-border)
   margin-right: .75rem
 
-.input-append
+.field-append
   border-left: 1px solid var(--#{$prefix}-fill-border)
 
-.input-errors
+.field-errors
   margin: .5rem 0
   font-size: var(--#{$prefix}-font-size-2)
-  & > .input-error
+  & > .field-error
     color: $danger
