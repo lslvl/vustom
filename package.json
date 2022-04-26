@@ -1,6 +1,9 @@
 {
   "name": "@lslvl/vustom",
   "version": "1.0.0",
+  "description": "...coming soon",
+  "author": "Louis Laviale <louis.laviale@gmail.com>",
+  "main": "packages/vustom/src/install.ts",
   "repository": "git://github.com/lslvl/vustom.git",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
