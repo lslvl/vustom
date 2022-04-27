@@ -7,7 +7,6 @@ $bouton-height: 2.5rem !default
 .bouton
   align-items: center
   background-color: var(--#{$prefix}-fill-1)
-  // border: 1px solid var(--#{$prefix}-fill-border)
   border-radius: 5px
   color: var(--#{$prefix}-color)
   cursor: pointer
@@ -21,8 +20,7 @@ $bouton-height: 2.5rem !default
   transition: all 0.2s
   text-decoration: none
   user-select: none
-  &:hover
-    background-color: var(--#{$prefix}-fill-1-hover)
+  white-space: nowrap
   &.rounded
     border-radius: 1.3rem
   &.transparent
@@ -32,6 +30,8 @@ $bouton-height: 2.5rem !default
     background-color: transparent
     border: 1px solid var(--#{$prefix}-color-3)
     min-height: calc($bouton-height + 2px)
+  &:hover
+    background-color: var(--#{$prefix}-fill-1-hover)
   &.loading
     color: transparent
     pointer-events: none
@@ -44,6 +44,7 @@ $bouton-height: 2.5rem !default
       content: ''
       display: block
       left: calc(50% - .5em)
+      top: calc(50% - .5em)
       height: 1em
       position: relative
       width: 1em
@@ -115,8 +116,13 @@ $bouton-height: 2.5rem !default
     height: calc($bouton-height + 1.5rem)
     padding: 0 1.5rem
   &.block
-    display: block
+    display: flex
+    justify-content: center
     width: 100%
+    & > .icon
+      position: absolute
+      left:1rem
+
 
 @keyframes spinAroundLoader
   from

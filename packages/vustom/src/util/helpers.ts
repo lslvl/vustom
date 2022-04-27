@@ -64,9 +64,15 @@ export class Timer {
   }
 }
 
+// activator should not have a fixed position
 export var keepInViewer = (activator, element, args = {}) => {
 
-  var gap = args.gap || 0
+  var gap = args.gap || 0 // gap between activator and element
+  var viewportGap = args.viewportGap || 20 // gap between viewport and element
+  var pref_x = args.pref_x || 'center' // default position
+  var pref_y = args.pref_y || 'bottom' // default position
+
+  var overflow = false
 
   var activatorInfo = activator.getBoundingClientRect()
   var elementInfo = element.getBoundingClientRect()
@@ -74,51 +80,88 @@ export var keepInViewer = (activator, element, args = {}) => {
   var left = 0
   var top = 0
 
-  var arrowX = 'center'
-  var arrowY = 'bottom'
+  var arrowX, arrowY = ''
 
-  var pos_x = 'center' // left | center | right
-  var pos_y = '' // top | middle | bottom
+  // viewport width / height
+  const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
+  const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
 
-  var offsetLeft = activatorInfo.left - (elementInfo.width + gap)
-  var offsetRight =
-    window.innerWidth - (activatorInfo.left + activatorInfo.width + elementInfo.width + gap)
+  var offsets = {
+    x: {
+      left: activatorInfo.left,
+      right: vw - (activatorInfo.left + activatorInfo.width),
+    },
+    y: {
+      top: activatorInfo.top - gap,
+      bottom: vh - (activatorInfo.top + activatorInfo.height)
+    }
+  }
+
+  // offsets sorted by highest value
+  let sortedX = Object.entries(offsets.x).sort((a, b) => b[1] - a[1])
+  let sortedY = Object.entries(offsets.y).sort((a, b) => b[1] - a[1])
+
+  var pos_x, pos_y = ''
+
+  // check if pref coord is
+  if(offsets.x[pref_x] > elementInfo.width) {
+    pos_x = pref_x
+  } else {
+    if(pref_x == 'center' && (elementInfo.width / 2) < offsets.x['left'] && (elementInfo.width / 2) < offsets.x['right']) {
+      pos_x = 'center'
+    } else {
+      pos_x = sortedX[0][0]
+    }
+  }
+
+  if(offsets.y[pref_y] > elementInfo.height) {
+    pos_y = pref_y
+  } else {
+    if(pref_y == 'center' && (elementInfo.height / 2) < offsets.y['top'] && (elementInfo.height / 2) < offsets.y['bottom']) {
+      pos_y = 'center'
+    } else {
+      pos_y = sortedY[0][0]
+    }
+  }
+
   // set the position left and top values
-  // naturally force center if possible
-  pos_x = offsetLeft < 0 ? 'left' : offsetRight < 0 ? 'right' : 'center'
-
-  var offsetTop = activatorInfo.top - (elementInfo.height + gap)
-  var offsetBottom =
-    window.innerHeight - (activatorInfo.top + activatorInfo.height + elementInfo.height + gap)
-  // naturally force top if possible
-  pos_y = offsetTop < 0 ? 'bottom' : offsetBottom < 0 ? 'top' : 'top'
-
   switch (pos_x) {
-    case 'left': left = activatorInfo.left + gap
-    arrowX = 'left'
+    case 'right':
+      left = activatorInfo.left + gap
+      arrowX = 'left'
     break;
-    case 'right': left = activatorInfo.left + activatorInfo.width - elementInfo.width - gap
-    arrowX = 'right'
+    case 'left':
+      left = vw - elementInfo.width - gap
+      left = activatorInfo.left + activatorInfo.width - elementInfo.width - gap
+      arrowX = 'right'
     break;
-    case 'center': left = activatorInfo.left + activatorInfo.width / 2 - elementInfo.width / 2
-    arrowX = 'center'
+    case 'center':
+      left = activatorInfo.left + activatorInfo.width / 2 - elementInfo.width / 2
+      arrowX = 'center'
     break;
   }
 
   switch (pos_y) {
-    case 'top': top = activatorInfo.top - elementInfo.height - gap
-    arrowY = 'bottom'
+    case 'top':
+      top = activatorInfo.top - elementInfo.height - gap
+      arrowY = 'bottom'
     break;
-    case 'bottom': top = activatorInfo.top + activatorInfo.height + gap
-    arrowY = 'top'
+    case 'bottom':
+      top = activatorInfo.top + activatorInfo.height + gap
+      arrowY = 'top'
     break;
-    case 'middle': top = activatorInfo.top - (activatorInfo.height / 2) + (elementInfo.height / 2)
-    arrowY = 'middle'
+    case 'center':
+      top = activatorInfo.top - (activatorInfo.height / 2) + (elementInfo.height / 2)
+      arrowY = 'center'
     break;
   }
 
+  // max height of element to prevent element from overidding viewport
+  var maxWidth = vw - (left + viewportGap)
+  var maxHeight = vh - (top + viewportGap)
+
   return {
-    top, left, arrowX, arrowY
+    top, left, arrowX, arrowY, maxHeight
   }
 
 }

@@ -1,0 +1,95 @@
+$modal-gap: 1rem
+
+.modal
+  align-items: center
+  background-color: rgba(0,0,0,.3)
+  flex-direction: column
+  justify-content: center
+  opacity: 0
+  overflow: hidden
+  padding: 0 1rem
+  position: fixed
+  transition: 0
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0
+  visibility: hidden
+  z-index: 500
+  &.visible
+    display: flex
+    opacity: 1
+    visibility: visible
+    transition: .5s
+
+.modal-card
+  background-color: var(--#{$prefix}-fill)
+  box-shadow: var(--#{$prefix}-shadow-3)
+  border-radius: 10px
+  display: flex
+  flex-direction: column
+  max-height: calc(100vh - 40px)
+  margin: 2rem 2rem 2rem 2rem
+  overflow: auto
+  position: relative
+  max-width: 40rem
+  width: 100%
+  &.visible
+    animation: anitemateModal .2s
+
+.modal-card__header,
+.modal-card__footer
+  align-items: center
+  border-top: 1px solid var(--do-fill-border)
+  display: flex
+  flex-shrink: 0
+  justify-content: space-between
+  padding: $modal-gap $modal-gap
+  position: relative
+
+.modal-card__header
+  background-color: var(--do-fill)
+  border-bottom: 1px solid var(--do-fill-border)
+  // based on the highest child which is often / always the close button
+  padding: calc($modal-gap / 2) $modal-gap
+  &-title
+    font-weight: 600
+    font-size: 1.2rem
+    flex-grow: 1
+    flex-shrink: 0
+  &close
+    // times close to the container border
+    margin-right: -.5rem
+
+.modal-card__body
+  color: var(--#{$prefix}-color)
+  flex-grow: 1
+  flex-shrink: 1
+  overflow-y: auto
+  max-height: 100%
+  padding: $modal-gap
+
+.modal-card-loader
+  align-items: center
+  background-color: var(--do-fill)
+  display: flex
+  justify-content: center
+  min-height: 10rem
+
+.modal-card-footer
+  align-items: center
+  background-color: var(--do-fill-muted)
+  display: flex
+  justify-content: space-between
+  &.One-Button
+    background-color: var(--do-fill)
+    & > *
+      flex: 1
+      justify-content: center
+      text-align: center
+
+@keyframes anitemateModal
+  0%
+    transform: translateY(-4rem)
+  100%
+    transform: translateY(0)

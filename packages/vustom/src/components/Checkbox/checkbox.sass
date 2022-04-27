@@ -26,7 +26,7 @@ $checkbox-size: 1.125rem
       & > .icon
         color: white
   & > input[type='checkbox']
-    display: none
+    display: none !important
   @each $color, $map in $colors-map
     &.#{$color}
       & > input:checked

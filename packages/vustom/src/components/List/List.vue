@@ -7,7 +7,3 @@
   </div>
 
 </template>
-
-<script setup>
-import './list.sass'
-</script>

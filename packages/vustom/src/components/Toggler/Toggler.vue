@@ -11,7 +11,5 @@
 </template>
 
 <script setup>
-import './toggler.sass'
-
 const props = defineProps(['checked', 'color', 'disabled', 'loading'])
 </script>

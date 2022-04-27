@@ -33,8 +33,6 @@
 </template>
 
 <script setup>
-import './tag.sass'
-
 const emit = defineEmits(['delete', 'click'])
 
 const props = defineProps({

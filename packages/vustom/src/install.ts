@@ -3,9 +3,9 @@ import Bouton from './components/Bouton/Bouton.vue'
 import Checkbox from './components/Checkbox/Checkbox.vue'
 import Dropdown from './components/Dropdown/Dropdown.vue'
 import Field from './components/Field/Field.vue'
-import Form from './components/Form/Form.vue'
 import List from './components/List/List.vue'
 import ListItem from './components/ListItem/ListItem.vue'
+import Modal from './components/Modal/Modal.vue'
 import Notification from './components/Notification'
 import Tag from './components/Tag/Tag.vue'
 import Toggler from './components/Toggler/Toggler.vue'
@@ -23,9 +23,9 @@ export default {
     app.component('checkbox', Checkbox)
     app.component('dropdown', Dropdown)
     app.component('field', Field)
-    app.component('fields', Form)
     app.component('list', List)
     app.component('list-item', ListItem)
+    app.component('modal', Modal)
     app.component('tag', Tag)
     app.component('toggler', Toggler)
     app.component('tooltip', Tooltip)

@@ -5,6 +5,7 @@
     <div class="field" :class="[
       color,
       errors ? 'danger' : '',
+      loading ? 'loading' : '',
       disabled ? 'disabled' : ''
     ]">
       <div class="field-prepend" v-if="$slots.prepend">
@@ -12,12 +13,10 @@
       </div>
       <div class="field-control">
         <label :for="id" :class="[
-          focused ||
-          (typeof modelValue === 'number' && modelValue > 0) ||
-          (typeof modelValue === 'string' && modelValue.length > 0) ||
-          placeholder.length ? '' : 'inside'
+          modelValue || modelValue != '' ||
+          focused || placeholder.length ||
+          (type === 'number' && typeof modelValue === 'string') ? 'upper' : ''
         ]">
-          <span class="icon"></span>
           <slot></slot>
         </label>
         <div class="field-tip" v-if="$slots.tip">
@@ -53,7 +52,6 @@
 </template>
 
 <script setup>
-import './field.sass'
 import { computed, ref } from 'vue'
 
 const props = defineProps({
@@ -62,6 +60,7 @@ const props = defineProps({
   id: String,
   placeholder: { type: String, default: '' },
   color: String,
+  loading: Boolean,
   disabled: Boolean,
   errors: Array,
   min: Number,

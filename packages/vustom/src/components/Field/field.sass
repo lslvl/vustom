@@ -15,7 +15,6 @@ input[type=number]
   border-radius: 0
   box-shadow: none
   color: var(--#{$prefix}-color)
-  overflow: hidden
   font-family: 'Inter'
   font-size: 1rem
   font-weight: 400
@@ -33,17 +32,33 @@ input[type=password]
   align-items: flex-end
   display: flex
   border: 1px solid transparent
-  // border-radius: $field-text-radius
   border-bottom: 1px solid var(--#{$prefix}-fill-border)
   height: $field-text-height
-  overflow: hidden
   position: relative
   &:focus-within
     border-bottom-color: $primary
     & > .field-control
       & > label
         color: $primary !important
-    // box-shadow: var(--#{$prefix}-shadow-3)
+  &.loading
+    &::after
+      display: block
+      content: ''
+      height: 1px
+      width: 100%
+      position: absolute
+      bottom: -1px
+      left: 0
+      z-index: 1
+      animation-duration: 1.5s
+      background-color: getColor(primary, invertBase)
+      background-image: linear-gradient(to right, $primary 30%, getColor(primary, invertBase) 30%)
+      animation-iteration-count: infinite
+      animation-name: moveIndeterminate
+      animation-timing-function: linear
+      background-position: top left
+      background-repeat: no-repeat
+      background-size: 150% 150%
   @each $color, $map in $colors-map
     &.#{$color}
       border-bottom-color: getColor($color, base)
@@ -54,6 +69,11 @@ input[type=password]
           flex: 1
           & > input
             caret-color: getColor($color, base) !important
+      &.loading
+        border-bottom-color: transparent
+        &::after
+          background-color: getColor($color, invertBase)
+          background-image: linear-gradient(to right, getColor($color, base) 30%, getColor($color, invertBase) 30%)
   &.disabled
     // background-color: var(--#{$prefix}-fill-1)
     & label
@@ -92,21 +112,20 @@ input[type=password]
         font-size: var(--#{$prefix}-font-size-3)
   & > label
     color: var(--#{$prefix}-color-4)
-    font-size: var(--#{$prefix}-font-size-1)
-    font-weight: 500
+    font-size: var(--#{$prefix}-font-size-4)
+    font-weight: 400
+    top: calc($field-text-height / 2)
+    transform: translateY(-50%)
     display: inline
-    // top: .375rem
-    top: .25rem
-    // left: $field-text-padding
     position: absolute
     transition: .2s
     transition-timing-function: ease-in-out
-    &.inside
+    &.upper
       color: var(--#{$prefix}-color-4)
-      font-size: var(--#{$prefix}-font-size-4)
-      font-weight: 400
-      top: calc($field-text-height / 2)
-      transform: translateY(-50%)
+      font-size: var(--#{$prefix}-font-size-1)
+      font-weight: 500
+      top: .25rem
+      transform: translateY(0)
 
 .field-prepend,
 .field-append
@@ -131,3 +150,9 @@ input[type=password]
   font-size: var(--#{$prefix}-font-size-2)
   & > .field-error
     color: $danger
+
+@keyframes moveIndeterminate
+  from
+    background-position: 200% 0
+  to
+    background-position: -200% 0

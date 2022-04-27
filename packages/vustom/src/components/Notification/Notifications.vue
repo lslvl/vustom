@@ -18,7 +18,6 @@
 </template>
 
 <script>
-import './notification.sass'
 import Notification from './Notification.vue'
 import { emitter } from './events'
 

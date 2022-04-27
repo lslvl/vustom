@@ -26,7 +26,6 @@
 
 <script setup>
 import { ref, onMounted, nextTick } from 'vue'
-import "./tooltip.sass"
 import { keepInViewer } from '../../util/helpers'
 
 const props = defineProps({
@@ -45,9 +44,14 @@ var parent = ref(null)
 async function setPosition() {
   await nextTick()
 
-  var gap = props.raw ? 0 : 10 // px
+  var args = {
+    gap: 10,
+    pref_x: 'center',
+    pref_y: 'top'
+  }
 
-  var kiv = keepInViewer(parent.value, tooltip.value, { gap })
+
+  var kiv = keepInViewer(parent.value, tooltip.value, args)
   top.value = kiv.top
   left.value = kiv.left
 

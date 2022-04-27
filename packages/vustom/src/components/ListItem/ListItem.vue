@@ -30,7 +30,5 @@
 </template>
 
 <script setup>
-import './list_item.sass'
-
 const props = defineProps(['color', 'disabled'])
 </script>
