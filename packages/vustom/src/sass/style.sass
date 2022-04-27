@@ -18,26 +18,24 @@ body
 
 body[theme=light]
   --#{$prefix}-fill: white
+  --#{$prefix}-fill-1: hsl(240,2%,96%)
+  --#{$prefix}-fill-2: hsl(240,2%,92%)
+  --#{$prefix}-fill-3: hsl(240,2%,88%)
+  --#{$prefix}-fill-4: hsl(240,2%,84%)
+
   --#{$prefix}-fill-hover: #F8F8F8
-  --#{$prefix}-fill-border: #ECECEC
-
-  --#{$prefix}-fill-1: #F8F8F8
   --#{$prefix}-fill-1-hover: #F4F4F5
-  --#{$prefix}-fill-1-border: #E3E3E3
-
-  --#{$prefix}-fill-2: #F4F4F5
   --#{$prefix}-fill-2-hover: #D5D5D5
-  --#{$prefix}-fill-2-border: #EAEAEB
-
-  --#{$prefix}-fill-3: #EAEAEB
   --#{$prefix}-fill-3-hover: #D4D4D6
-  --#{$prefix}-fill-3-border: #C6C6C6
-
-  --#{$prefix}-fill-4: #D4D4D6
   --#{$prefix}-fill-4-hover: #BCBCC4
-  --#{$prefix}-fill-4-border: #9F9F9F
 
-  --#{$prefix}-shadow-1: 0 0 5px rgba(0,0,0,.05)
+  --#{$prefix}-fill-border: #ECECEC
+  --#{$prefix}-fill-1-border: #E3E3E3
+  --#{$prefix}-fill-2-border: #EAEAEB
+  --#{$prefix}-fill-3-border: #C6C6C6
+  --#{$prefix}-fill-4-border: #9F9F9F
+  
+  --#{$prefix}-shadow-1: 0 0 3px rgba(0,0,0,.05)
   --#{$prefix}-shadow-2: 0 0 7px rgba(0,0,0,.1)
   --#{$prefix}-shadow-3: 0 0 9px rgba(0,0,0,.15)
   --#{$prefix}-shadow-4: 0 0 11px rgba(0,0,0,.2)
@@ -58,25 +56,43 @@ body[theme=light]
   --#{$prefix}-color-8: hsl(200, 6%, 80%)
 
 body[theme=dark]
-  --#{$prefix}-fill: #263240
-  --#{$prefix}-fill-hover: #192028
-  --#{$prefix}-fill-border: #192028
+  --#{$prefix}-fill: hsla(#{$color-h}, #{$color-s}%, 10%, 1)
+  --#{$prefix}-fill-1: hsla(#{$color-h}, #{$color-s}%, 8%, 1)
+  --#{$prefix}-fill-2: hsla(#{$color-h}, #{$color-s}%, 6%, 1)
+  --#{$prefix}-fill-3: hsla(#{$color-h}, #{$color-s}%, 4%, 1)
+  --#{$prefix}-fill-4: hsla(#{$color-h}, #{$color-s}%, 2%, 1)
 
-  --#{$prefix}-fill-1: #1E2833
-  --#{$prefix}-fill-1-hover: #263240
-  --#{$prefix}-fill-1-border: #263240
+  --#{$prefix}-fill-hover: hsla(#{$color-h}, #{$color-s}%, 20%, 1)
+  --#{$prefix}-fill-1-hover: hsla(#{$color-h}, #{$color-s}%, 20%, 1)
+  --#{$prefix}-fill-2-hover: hsla(#{$color-h}, #{$color-s}%, 20%, 1)
+  --#{$prefix}-fill-3-hover: hsla(#{$color-h}, #{$color-s}%, 20%, 1)
+  --#{$prefix}-fill-4-hover: hsla(#{$color-h}, #{$color-s}%, 20%, 1)
 
-  --#{$prefix}-fill-2: #131920
-  --#{$prefix}-fill-2-hover: #1E2833
-  --#{$prefix}-fill-2-border: #1E2833
+  --#{$prefix}-fill-border: hsla(#{$color-h}, #{$color-s}%, 20%, 1)
+  --#{$prefix}-fill-1-border: hsla(#{$color-h}, #{$color-s}%, 20%, 1)
+  --#{$prefix}-fill-2-border: hsla(#{$color-h}, #{$color-s}%, 20%, 1)
+  --#{$prefix}-fill-3-border: hsla(#{$color-h}, #{$color-s}%, 20%, 1)
+  --#{$prefix}-fill-4-border: hsla(#{$color-h}, #{$color-s}%, 20%, 1)
 
-  --#{$prefix}-fill-3: #0D1116
-  --#{$prefix}-fill-3-hover: #131920
-  --#{$prefix}-fill-3-border: #131920
-
-  --#{$prefix}-fill-4: #07080B
-  --#{$prefix}-fill-4-hover: #0D1116
-  --#{$prefix}-fill-4-border: #0D1116
+  // --#{$prefix}-fill: #263240
+  // --#{$prefix}-fill-hover: #2f3c4a
+  // --#{$prefix}-fill-border: #3b424a
+  //
+  // --#{$prefix}-fill-1: #1E2833
+  // --#{$prefix}-fill-1-hover: #263240
+  // --#{$prefix}-fill-1-border: #3C3F42
+  //
+  // --#{$prefix}-fill-2: #131920
+  // --#{$prefix}-fill-2-hover: #1E2833
+  // --#{$prefix}-fill-2-border: #1E2833
+  //
+  // --#{$prefix}-fill-3: #0D1116
+  // --#{$prefix}-fill-3-hover: #131920
+  // --#{$prefix}-fill-3-border: #22272d
+  //
+  // --#{$prefix}-fill-4: #07080B
+  // --#{$prefix}-fill-4-hover: #0D1116
+  // --#{$prefix}-fill-4-border: #26292D
 
   --#{$prefix}-shadow-1: 0 0 5px rgba(0,0,0,.1)
   --#{$prefix}-shadow-2: 0 0 7px rgba(0,0,0,.15)

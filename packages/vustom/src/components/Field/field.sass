@@ -32,7 +32,7 @@ input[type=password]
   align-items: flex-end
   display: flex
   border: 1px solid transparent
-  border-bottom: 1px solid var(--#{$prefix}-fill-border)
+  border-bottom: 1px solid var(--#{$prefix}-fill-3-border)
   height: $field-text-height
   position: relative
   &:focus-within
@@ -75,11 +75,8 @@ input[type=password]
           background-color: getColor($color, invertBase)
           background-image: linear-gradient(to right, getColor($color, base) 30%, getColor($color, invertBase) 30%)
   &.disabled
-    // background-color: var(--#{$prefix}-fill-1)
-    & label
-      color: var(--#{$prefix}-color-2) !important
-    & input
-      color: var(--#{$prefix}-color-2)
+    opacity: .3
+    border-bottom-color: transparent
 
 .field-tip
   content: ''
