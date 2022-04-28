@@ -1,36 +1,33 @@
 <template>
 
+  <template
+    ref="activator"
+    class="dropdown-activator"
+    :class="{ 'active': visible }"
+    :style="activatorDisplay ? 'display:'+activatorDisplay : ''"
+    @mouseenter="mouseEnter"
+    @mouseleave="mouseLeave">
+    <slot name="activator" :on="{ click: click }"></slot>
+  </template>
+
   <div
-    class="dropdown-container"
-    :class="[hoverable ? 'hoverable' : '']"
+    class="dropdown"
+    :class="{ 'active': visible }"
+    :style="['left:' + left + 'px;', 'top:' + top + 'px;max-height:'+maxHeight+'px']"
+    ref="dropdown"
+    v-if="visible"
+    v-click-outside="hide"
     @mouseenter="mouseEnter"
     @mouseleave="mouseLeave">
 
-    <div
-      class="dropdown-activator"
-      :class="{ 'active': visible }"
-      ref="activator">
-      <slot name="activator" :on="{ click: click }"></slot>
-    </div>
-
-    <div
-      class="dropdown"
-      :class="{ 'active': visible }"
-      :style="['left:' + left + 'px;', 'top:' + top + 'px;max-height:'+maxHeight+'px']"
-      ref="dropdown"
-      v-if="visible"
-      v-click-outside="hide">
-
-      <slot></slot>
-
-    </div>
+    <slot></slot>
 
   </div>
 
 </template>
 
 <script setup>
-import { ref, nextTick  } from 'vue'
+import { ref, toRefs, nextTick, watch } from 'vue'
 import ClickOutside from '../../directives/click-outside'
 import { keepInViewer } from '../../util/helpers'
 
@@ -38,7 +35,8 @@ const activator = ref(null)
 const dropdown = ref(null)
 
 const props = defineProps({
-  hoverable: Boolean
+  hoverable: Boolean,
+  position: String
 })
 
 var visible = ref(false)
@@ -46,12 +44,20 @@ var left = ref(0)
 var top = ref(0)
 var maxHeight = ref('')
 
+var activatorDisplay = ref('')
+
+watch(activator, (newValue, oldValue) => {
+  activatorDisplay.value = newValue ? window.getComputedStyle(newValue.children[0]).display : ''
+})
+
 async function show() {
   visible.value = true
+  activator.value.children[0].classList.add('active')
   setPosition()
 }
 
 function hide() {
+  activator.value.children[0].classList.remove('active')
   visible.value = false
 }
 
@@ -59,8 +65,7 @@ async function setPosition() {
   await nextTick()
 
   var args = {
-    pref_x: 'right',
-    pref_y: 'top'
+    position: props.position || 'bottom right',
   }
 
   var kiv = keepInViewer(activator.value, dropdown.value, args)

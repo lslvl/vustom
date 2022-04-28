@@ -1,11 +1,11 @@
 @import '../../sass/style.sass'
 
-.dropdown-container
-  display: inline-block
-  position: relative
 
 .dropdown-activator
   cursor: pointer
+  // fix losing width of nested list-item activator
+  & > .list-item
+    width: 100%
 
 .dropdown
   background: var(--#{$prefix}-fill)

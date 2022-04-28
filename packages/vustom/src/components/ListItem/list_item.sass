@@ -3,6 +3,7 @@
 .list-item
   align-items: center
   border-radius: 3px
+  box-sizing: border-box
   color: var(--#{$prefix}-color)
   display: flex
   min-height: 2.6rem
@@ -35,6 +36,11 @@
       font-weight: 600
     & > .content
       margin-top: .5rem
+  & > .extra
+    & > svg
+      height: 1rem
+  &.active
+    background-color: var(--#{$prefix}-fill-hover) !important
   @each $color, $map in $colors-map
     &.#{$color}
       background-color: getColor($color, invertBase)

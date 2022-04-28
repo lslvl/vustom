@@ -31,17 +31,22 @@ input[type=password]
 .field
   align-items: flex-end
   display: flex
-  border: 1px solid transparent
-  border-bottom: 1px solid var(--#{$prefix}-fill-3-border)
+  border: none
   height: $field-text-height
   position: relative
   &:focus-within
-    border-bottom-color: $primary
+    & .field-control__body
+      &::after
+        background-color: $primary
+    & .field-append,
+    & .field-prepend
+      color: $primary
     & > .field-control
       & > label
         color: $primary !important
-  &.loading
+  & .field-control__body
     &::after
+      background: var(--#{$prefix}-fill-3-border)
       display: block
       content: ''
       height: 1px
@@ -51,17 +56,19 @@ input[type=password]
       left: 0
       z-index: 1
       animation-duration: 1.5s
-      background-color: getColor(primary, invertBase)
-      background-image: linear-gradient(to right, $primary 30%, getColor(primary, invertBase) 30%)
       animation-iteration-count: infinite
-      animation-name: moveIndeterminate
       animation-timing-function: linear
       background-position: top left
       background-repeat: no-repeat
       background-size: 150% 150%
+  &.loading
+    & .field-control__body
+      &::after
+        animation-name: moveIndeterminate
+        background-color: getColor(primary, invertBase)
+        background-image: linear-gradient(to right, $primary 30%, getColor(primary, invertBase) 30%)
   @each $color, $map in $colors-map
     &.#{$color}
-      border-bottom-color: getColor($color, base)
       & > .field-control
         & > label
           color: getColor($color, base) !important
@@ -69,11 +76,18 @@ input[type=password]
           flex: 1
           & > input
             caret-color: getColor($color, base) !important
+      &:focus-within
+        & .field-control__body
+          &::after
+            background-color: getColor($color, base)
+        & .field-append,
+        & .field-prepend
+          color: getColor($color, base)
       &.loading
-        border-bottom-color: transparent
-        &::after
-          background-color: getColor($color, invertBase)
-          background-image: linear-gradient(to right, getColor($color, base) 30%, getColor($color, invertBase) 30%)
+        & .field-control__body
+          &::after
+            background-color: getColor($color, invertBase)
+            background-image: linear-gradient(to right, getColor($color, base) 30%, getColor($color, invertBase) 30%)
   &.disabled
     opacity: .3
     border-bottom-color: transparent
@@ -101,7 +115,6 @@ input[type=password]
       display: block
       height: 2rem
       font-weight: 500
-      // padding: 0 $field-text-padding
       padding-bottom: .125rem
       width: 100%
       &::placeholder
@@ -121,26 +134,27 @@ input[type=password]
       color: var(--#{$prefix}-color-4)
       font-size: var(--#{$prefix}-font-size-1)
       font-weight: 500
-      top: .25rem
+      top: 0
       transform: translateY(0)
 
 .field-prepend,
 .field-append
   align-items: center
-  background-color: var(--#{$prefix}-fill-1)
   color: var(--#{$prefix}-color-6)
   display: flex
   justify-content: center
   height: 100%
   padding: 0 .5rem
-  min-width: 1.75rem
+  transition: .3s
+  min-width: 2.75rem
+  & > svg
+    height: 1.2rem
 
 .field-prepend
-  border-right: 1px solid var(--#{$prefix}-fill-border)
   margin-right: .75rem
 
 .field-append
-  border-left: 1px solid var(--#{$prefix}-fill-border)
+  margin-left: .75rem
 
 .field-errors
   margin: .5rem 0

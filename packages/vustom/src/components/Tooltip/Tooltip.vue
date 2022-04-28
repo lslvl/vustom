@@ -30,7 +30,8 @@ import { keepInViewer } from '../../util/helpers'
 
 const props = defineProps({
   raw: { type: Boolean, default: false },  // if true, dont show arrow or design
-  color: String
+  color: String,
+  position: String
 })
 
 var tooltip = ref(null)
@@ -46,8 +47,7 @@ async function setPosition() {
 
   var args = {
     gap: 10,
-    pref_x: 'center',
-    pref_y: 'top'
+    position: props.position || 'top'
   }
 
 

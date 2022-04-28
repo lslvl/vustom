@@ -22,12 +22,13 @@ $tooltip-background: var(--#{$prefix}-fill)
     visibility: visible
   .tooltip-inner
     background: var(--#{$prefix}-fill)
+    box-shadow: var(--#{$prefix}-shadow-2)
     color: var(--#{$prefix}-color)
     display: block
     border-radius: 3px
     padding: .5rem .8rem
     position: relative
-    z-index: 10000
+    z-index: 250
   .tooltip-arrow
     left: 50%
     transform: translateX(-50%)
@@ -36,7 +37,7 @@ $tooltip-background: var(--#{$prefix}-fill)
     border-style: solid
     position: absolute
     border-color: var(--#{$prefix}-fill)
-    z-index: 1
+    z-index: 251
     &.bottom
       top: calc(100%)
       border-width: 5px 5px 0 5px
@@ -51,8 +52,26 @@ $tooltip-background: var(--#{$prefix}-fill)
       border-top-color: transparent !important
     &.right
       left: calc(100% - 15px)
+      &.center_y
+        left: 100%
+        border-width: 5px 0 5px 5px
+        border-right-color: transparent !important
+        border-bottom-color: transparent !important
+        border-top-color: transparent !important
     &.left
       left: 15px
+      &.center_y
+        left: -5px
+        border-width: 5px 5px 5px 0
+        border-left-color: transparent !important
+        border-bottom-color: transparent !important
+        border-top-color: transparent !important
+    &.center_x
+      left: 50%
+      transform: translateX(-50%)
+    &.center_y
+      top: 50%
+      transform: translateY(-50%)
     &.none
       display: none
   @each $color, $map in $colors-map

@@ -32,8 +32,8 @@
             :min="min"
             :max="max"
             @input="$emit('update:modelValue', $event.target.value)"
-            @focus="onFocus()"
-            @blur="onBlur()"/>
+            @focus="onFocus($event)"
+            @blur="onBlur($event)"/>
         </div>
       </div>
       <div class="field-append" v-if="$slots.append">
@@ -66,7 +66,7 @@ const props = defineProps({
   min: Number,
   max: Number
 })
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits(['update:modelValue', 'focus', 'blur'])
 
 const value = computed({
   get() {
@@ -79,10 +79,12 @@ const value = computed({
 
 var focused = ref(false)
 
-function onFocus() {
+function onFocus(e) {
   focused.value = true
+  emit('focus', e)
 }
-function onBlur() {
+function onBlur(e) {
   focused.value = false
+  emit('blur', e)
 }
 </script>

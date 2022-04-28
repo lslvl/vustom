@@ -60,13 +60,6 @@ $bouton-height: 2.5rem !default
       height: 100%
   & > svg
     height: 1rem
-  &.iconly
-    justify-content: center
-    padding: 0
-    width: calc($bouton-height + 2px)
-    & > svg
-      height: 1rem
-      width: 1rem
   @each $color, $map in $colors-map
     &.#{$color}
       background-color: getColor($color, base)
@@ -115,6 +108,37 @@ $bouton-height: 2.5rem !default
     font-size: var(--#{$prefix}-font-size-7) !important
     height: calc($bouton-height + 1.5rem)
     padding: 0 1.5rem
+  &.iconly
+    justify-content: center
+    padding: 0
+    width: calc($bouton-height + 2px)
+    &.tiny
+      padding: 0
+      width: 1.5rem
+      & > svg
+        height: .8rem
+        width: .8rem
+    &.small
+      padding: 0
+      width: 2rem
+      & > svg
+        height: 1rem
+        width: 1rem
+    &.large
+      padding: 0
+      width: 3rem
+      & > svg
+        height: 1.4rem
+        width: 1.4rem
+    &.huge
+      padding: 0
+      width: 4rem
+      & > svg
+        height: 1.8rem
+        width: 1.8rem
+    & > svg
+      height: 1.2rem
+      width: 1.2rem
   &.block
     display: flex
     justify-content: center
