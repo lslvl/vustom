@@ -3,12 +3,13 @@
 // height is 2px heigher
 // to have a total ripple effect without borders
 $bouton-height: 2.5rem !default
+$bouton-weight: 400 !default
 
 .bouton
   align-items: center
-  background-color: var(--#{$prefix}-fill)
+  background-color: var(--#{$vustom-prefix}-fill)
   border-radius: 5px
-  color: var(--#{$prefix}-color)
+  color: var(--#{$vustom-prefix}-color)
   cursor: pointer
   display: inline-flex
   font-size: 1rem
@@ -16,7 +17,7 @@ $bouton-height: 2.5rem !default
   height: calc($bouton-height + 2px)
   padding: 0 1rem
   position: relative
-  font-weight: 400
+  font-weight: $bouton-weight
   transition: all 0.2s
   text-decoration: none
   user-select: none
@@ -28,10 +29,10 @@ $bouton-height: 2.5rem !default
     border-color: transparent
   &.outlined
     background-color: transparent
-    border: 1px solid var(--#{$prefix}-color-3)
+    border: 1px solid var(--#{$vustom-prefix}-color-3)
     min-height: calc($bouton-height + 2px)
   &:hover
-    background-color: var(--#{$prefix}-fill-1-hover)
+    background-color: var(--#{$vustom-prefix}-fill-1-hover)
   &.loading
     color: transparent
     pointer-events: none
@@ -48,7 +49,7 @@ $bouton-height: 2.5rem !default
       height: 1em
       position: relative
       width: 1em
-      border-color: transparent transparent var(--#{$prefix}-color) var(--#{$prefix}-color) !important
+      border-color: transparent transparent var(--#{$vustom-prefix}-color) var(--#{$vustom-prefix}-color) !important
       position: absolute !important
   &.disabled
     opacity: .5
@@ -60,6 +61,8 @@ $bouton-height: 2.5rem !default
       height: 100%
   & > svg
     height: 1rem
+  & .v-ripple__animation
+    background-color: var(--#{$vustom-prefix}-color-8)
   @each $color, $map in $colors-map
     &.#{$color}
       background-color: getColor($color, base)
@@ -92,20 +95,20 @@ $bouton-height: 2.5rem !default
             border-color: transparent transparent getColor($color, invertEl) getColor($color, invertEl) !important
   &.tiny
     border-radius: 3px
-    font-size: var(--#{$prefix}-font-size-1) !important
+    font-size: var(--#{$vustom-prefix}-font-size-1) !important
     height: 1.5rem
     padding: 0 .5rem
   &.small
     border-radius: 4px
-    font-size: var(--#{$prefix}-font-size-2) !important
+    font-size: var(--#{$vustom-prefix}-font-size-2) !important
     height: 2rem
     padding: 0 .5rem
   &.large
-    font-size: var(--#{$prefix}-font-size-5) !important
+    font-size: var(--#{$vustom-prefix}-font-size-5) !important
     height: calc($bouton-height + .6rem)
     padding: 0 1.25rem
   &.huge
-    font-size: var(--#{$prefix}-font-size-7) !important
+    font-size: var(--#{$vustom-prefix}-font-size-7) !important
     height: calc($bouton-height + 1.5rem)
     padding: 0 1.5rem
   &.iconly

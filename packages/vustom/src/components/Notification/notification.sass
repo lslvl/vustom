@@ -10,26 +10,35 @@
   max-width: 22rem
 
 .notification
-  background-color: rgba(0,0,0,.92)
+  background-color: var(--#{$vustom-prefix}-fill)
   border-radius: 3px
   border-left: 4px solid transparent
-  color: rgb(190,190,190)
+  box-shadow: var(--#{$vustom-prefix}-shadow-3)
+  color: var(--#{$vustom-prefix}-color-6)
   cursor: pointer
   display: flex
   margin: 0
   margin-bottom: .5rem
-  font-weight: 500
+  font-weight: 400
   transition: all .5s
   user-select: none
   padding: 1rem 1.2rem
   position: relative
   width: 100%
   &.paused
-    background-color: rgba(0,0,0,.8)
+    background-color: var(--#{$vustom-prefix}-fill-hover)
+    box-shadow: var(--#{$vustom-prefix}-shadow-5)
+  .notification-title
+    color: var(--#{$vustom-prefix}-color)
+    display: block
+    font-weight: bold
+    margin-bottom: .25rem
   @each $color, $map in $colors-map
     &.#{$color}
       border-color: getColor($color, base)
       & > .notification-icon
+        color: getColor($color, base)
+      & .notification-title
         color: getColor($color, base)
 
 .notification-icon
@@ -45,10 +54,6 @@
 
 .notification-body
   flex: 1
-
-.notification-title
-  color: white
-  font-weight: bold
 
 @keyframes anitematenotificationTimer
   0%

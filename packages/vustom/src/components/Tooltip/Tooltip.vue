@@ -31,6 +31,7 @@ import { keepInViewer } from '../../util/helpers'
 const props = defineProps({
   raw: { type: Boolean, default: false },  // if true, dont show arrow or design
   color: String,
+  delay: Number,
   position: String
 })
 
@@ -41,6 +42,8 @@ var top = ref(0)
 var arrowX = ref(null)
 var arrowY = ref(null)
 var parent = ref(null)
+
+var timer = ref(null)
 
 async function setPosition() {
   await nextTick()
@@ -63,11 +66,27 @@ onMounted(() => {
   parent.value = tooltip.value.parentElement
   // bind events to the parent to make the tooltip visible on mouseenter
   parent.value.onmouseenter = () => {
+    show()
+  }
+  parent.value.onmouseleave = () => {
+    hide()
+  }
+})
+
+function show() {
+  if (props.delay) {
+    timer.value = setTimeout(() => {
+      visible.value = true
+      setPosition()
+    }, props.delay)
+  } else {
     visible.value = true
     setPosition()
   }
-  parent.value.onmouseleave = () => {
-    visible.value = false
-  }
-})
+}
+
+function hide() {
+  clearTimeout(timer.value)
+  visible.value = false
+}
 </script>

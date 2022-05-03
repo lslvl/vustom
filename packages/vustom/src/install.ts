@@ -13,7 +13,9 @@ import Tooltip from './components/Tooltip/Tooltip.vue'
 // Directives
 import ClickOutside from './directives/click-outside'
 import Ripple from './directives/ripple'
-
+//
+import mediable from './functions/mediable'
+import themable from './functions/themable'
 
 export default {
   // Install plugin.
@@ -32,7 +34,10 @@ export default {
     // Directives
     app.directive('click-outside', ClickOutside)
     app.directive('ripple', Ripple)
-
+    // Mix 
     app.use(Notification)
+    // Others
+    mediable()
+    app.provide('themable', themable)
   }
 }

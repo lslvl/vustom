@@ -1,6 +1,6 @@
 @import '../../sass/style.sass'
 
-$tooltip-background: var(--#{$prefix}-fill)
+$tooltip-background: var(--#{$vustom-prefix}-fill)
 
 .tooltip
   border-radius: 3px
@@ -21,9 +21,9 @@ $tooltip-background: var(--#{$prefix}-fill)
   &.active
     visibility: visible
   .tooltip-inner
-    background: var(--#{$prefix}-fill)
-    box-shadow: var(--#{$prefix}-shadow-2)
-    color: var(--#{$prefix}-color)
+    background: var(--#{$vustom-prefix}-fill)
+    box-shadow: var(--#{$vustom-prefix}-shadow-2)
+    color: var(--#{$vustom-prefix}-color)
     display: block
     border-radius: 3px
     padding: .5rem .8rem
@@ -36,7 +36,7 @@ $tooltip-background: var(--#{$prefix}-fill)
     height: 0
     border-style: solid
     position: absolute
-    border-color: var(--#{$prefix}-fill)
+    border-color: var(--#{$vustom-prefix}-fill)
     z-index: 251
     &.bottom
       top: calc(100%)

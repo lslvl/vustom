@@ -74,11 +74,11 @@ export var keepInViewer = (activator, element, args = {}) => {
   var pref = position.split(' ') // ['left'], ['top', 'left']
   var axis, counterAxis
 
-  if(pref[0] == 'left' || pref[0] == 'right') {
+  if(['left', 'right'].indexOf(pref[0]) > -1) {
     var axis = 'x'
     var counterAxis = 'y'
   }
-  if(pref[0] == 'top' || pref[0] == 'bottom') {
+  if(['top', 'bottom'].indexOf(pref[0]) > -1) {
     var axis = 'y'
     var counterAxis = 'x'
   }
@@ -125,27 +125,20 @@ export var keepInViewer = (activator, element, args = {}) => {
   // change direction if element can't be displayed
   main = offsets[main] >= (elementInfo[getDim(main)] + gap) ? main : sorted[axis][0][0]
 
-  if(second == 'center' && axis == 'x') {
-    var half = elementInfo.height / 2
-    if(offsets.top >= half && offsets.bottom >= half) {
-      second = 'center'
-    } else {
+  var half = elementInfo.height / 2
+  if(second == 'center') {
+    if(offsets[axis == 'x' ? 'left' : 'top'] < half || offsets[axis == 'x' ? 'left' : 'bottom'] < half) {
       second = offsets[second] >= (elementInfo[getDim(second)] + gap) ? second : sorted[counterAxis][0][0]
     }
-  }
-
-  if(second == 'center' && axis == 'y') {
-    var half = elementInfo.width / 2
-    if(offsets.left >= half && offsets.right >= half) {
-      second = 'center'
-    } else {
-      second = offsets[second] >= (elementInfo[getDim(second)] + gap) ? second : sorted[counterAxis][0][0]
-    }
+  } else {
+    second = offsets[second] >= (elementInfo[getDim(second)] + gap) ? second : sorted[counterAxis][0][0]
   }
 
   // get dimension property based on direction, ex: left => width, top => height
   function getDim(pos) {
-      return (pos == 'left' || pos == 'right') ? 'width' : (pos == 'top' || pos == 'bottom') ? 'height' : ''
+    return ['left','right'].indexOf(pos) > -1
+              ? 'width' : ['top','bottom'].indexOf(pos) > -1
+              ? 'height' : ''
   }
 
   main += '_'+axis
@@ -154,8 +147,6 @@ export var keepInViewer = (activator, element, args = {}) => {
   // set top and left values based on corrected directions
   setCoords(main)
   setCoords(second)
-
-
 
   function setCoords(pos) {
 
@@ -207,10 +198,8 @@ export var keepInViewer = (activator, element, args = {}) => {
   var maxWidth = vw - (left + viewportGap)
   var maxHeight = vh - (top + viewportGap)
 
-  console.log(arrowX, arrowY);
-
   return {
-    top, left, arrowX, arrowY, maxHeight
+    top, left, arrowX, arrowY, maxHeight, maxWidth
   }
 
 }

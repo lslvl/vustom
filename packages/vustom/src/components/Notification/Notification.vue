@@ -8,6 +8,7 @@
       theme,
       paused ? 'paused' : ''
     ]"
+    v-ripple
   >
     <div class="notification-icon" v-if="theme">
       <svg v-if="theme == 'success'" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -47,7 +48,7 @@ const emits = defineEmits(['close'])
 
 var paused = ref(false)
 
-var own_timer = new Timer(close, 3000, props.id)
+var own_timer = new Timer(close, 5000, props.id)
 
 own_timer.start()
 

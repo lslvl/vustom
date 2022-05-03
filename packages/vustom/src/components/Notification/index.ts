@@ -18,7 +18,7 @@ export default {
     const notify = (args) => {
 
       if (typeof args === 'string') {
-        args = { title: '', content: params }
+        args = { title: '', content: args }
       }
 
       emitter.emit('add', reactive(args))
@@ -26,7 +26,7 @@ export default {
 
     const name = options.name || 'notify'
 
-    app.config.globalProperties['$' + name] = notify
-    app.provide('$' + name, notify)
+    app.config.globalProperties[name] = notify
+    app.provide(name, notify)
   }
 }
