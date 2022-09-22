@@ -1,13 +1,28 @@
-setTheme() // init theme
+set() // init theme
 
-function setTheme(t = localStorage.getItem('theme')) {
+function set(t = localStorage.getItem('theme') || 'light') {
     localStorage.setItem('theme', t)
     document.body.setAttribute('theme', t)
 }
 
+function toggle() {
+    if (localStorage.getItem('theme') == 'light') {
+        set('dark')
+    } else {
+        set('light')
+    }
+}
+
+function get() {
+    return localStorage.getItem('theme')
+}
+
+
 var themable = {
-   theme: localStorage.getItem('theme'),
-   setTheme
+   get,
+   set,
+   toggle
+
 }
 
 export default themable

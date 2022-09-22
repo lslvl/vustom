@@ -96,7 +96,12 @@ export var keepInViewer = (activator, element, args = {}) => {
   // not used yet : force overflow if element can't be displayed with a tiny viewport
   var overflow = false
 
-  var activatorInfo = activator.getBoundingClientRect()
+  // var activator = {
+  //   top: 0,
+  //   left: 0,
+  //   width: 1,
+  //   height: 1
+  // }
   var elementInfo = element.getBoundingClientRect()
 
   var left = 0
@@ -110,10 +115,10 @@ export var keepInViewer = (activator, element, args = {}) => {
 
   // calcul offsets
   var offsets = {
-    top: activatorInfo.top - gap,
-    right: vw - (activatorInfo.left + activatorInfo.width),
-    bottom: vh - (activatorInfo.top + activatorInfo.height),
-    left: activatorInfo.left
+    top: activator.top - gap,
+    right: vw - (activator.left + activator.width),
+    bottom: vh - (activator.top + activator.height),
+    left: activator.left
   }
 
   // offsets sorted by highest value
@@ -121,19 +126,17 @@ export var keepInViewer = (activator, element, args = {}) => {
     x: Object.entries({ left: offsets.left, right: offsets.right }).sort((a, b) => b[1] - a[1]),
     y: Object.entries({ top: offsets.top, bottom: offsets.bottom }).sort((a, b) => b[1] - a[1])
   }
-
+  
   // change direction if element can't be displayed
-  main = offsets[main] >= (elementInfo[getDim(main)] + gap) ? main : sorted[axis][0][0]
+  // if not enough space, we get the larger offset side
+  main = offsets[main] >= (elementInfo[getDim(main)] + gap) ? main : sorted[axis][0][0]  
 
-  var half = elementInfo.height / 2
-  if(second == 'center') {
-    if(offsets[axis == 'x' ? 'left' : 'top'] < half || offsets[axis == 'x' ? 'left' : 'bottom'] < half) {
-      second = offsets[second] >= (elementInfo[getDim(second)] + gap) ? second : sorted[counterAxis][0][0]
-    }
-  } else {
+  var half = axis == 'x' ? elementInfo.height / 2 : elementInfo.width / 2
+
+  if (offsets[axis == 'x' ? 'top' : 'left'] < half || offsets[axis == 'x' ? 'bottom' : 'right'] < half) {
     second = offsets[second] >= (elementInfo[getDim(second)] + gap) ? second : sorted[counterAxis][0][0]
   }
-
+  
   // get dimension property based on direction, ex: left => width, top => height
   function getDim(pos) {
     return ['left','right'].indexOf(pos) > -1
@@ -142,7 +145,7 @@ export var keepInViewer = (activator, element, args = {}) => {
   }
 
   main += '_'+axis
-  second += '_'+axis
+  second += '_'+axis  
 
   // set top and left values based on corrected directions
   setCoords(main)
@@ -152,43 +155,43 @@ export var keepInViewer = (activator, element, args = {}) => {
 
     switch (pos) {
       case 'right_x':
-        left = activatorInfo.left + activatorInfo.width + gap
+        left = activator.left + activator.width + gap
         arrowX = 'left'
       break;
       case 'right_y':
-        left = activatorInfo.left + gap
+        left = activator.left + gap
         arrowX = 'left'
       break;
       case 'left_x':
-        left = activatorInfo.left - elementInfo.width - gap
+        left = activator.left - elementInfo.width - gap
         arrowX = 'right'
       break;
       case 'left_y':
-        left = activatorInfo.left + activatorInfo.width - elementInfo.width - gap
+        left = activator.left + activator.width - elementInfo.width - gap
         arrowX = 'right'
       break;
       case 'center_x':
-        top = activatorInfo.top + activatorInfo.height / 2 - elementInfo.height / 2
+        top = activator.top + activator.height / 2 - elementInfo.height / 2
         arrowY = 'center_y'
       break;
       case 'center_y':
-        left = activatorInfo.left + activatorInfo.width / 2 - elementInfo.width / 2
+        left = activator.left + activator.width / 2 - elementInfo.width / 2
         arrowX = 'center'
       break;
       case 'top_x':
-        top = activatorInfo.top + activatorInfo.height - elementInfo.height - gap
+        top = activator.top + activator.height - elementInfo.height - gap
         arrowY = 'bottom'
       break;
       case 'top_y':
-        top = activatorInfo.top - elementInfo.height - gap
+        top = activator.top - elementInfo.height - gap
         arrowY = 'bottom'
       break;
       case 'bottom_x':
-        top = activatorInfo.top + gap
+        top = activator.top + gap
         arrowY = 'top'
       break;
       case 'bottom_y':
-        top = activatorInfo.top + activatorInfo.height + gap
+        top = activator.top + activator.height + gap
         arrowY = 'top'
       break;
     }

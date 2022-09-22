@@ -1,6 +1,8 @@
 // Components
 import Bouton from './components/Bouton/Bouton.vue'
+import Bulle from './components/Bulle/Bulle.vue'
 import Checkbox from './components/Checkbox/Checkbox.vue'
+import Disclaimer from './components/Disclaimer/Disclaimer.vue'
 import Dropdown from './components/Dropdown/Dropdown.vue'
 import Field from './components/Field/Field.vue'
 import List from './components/List/List.vue'
@@ -14,15 +16,18 @@ import Tooltip from './components/Tooltip/Tooltip.vue'
 import ClickOutside from './directives/click-outside'
 import Ripple from './directives/ripple'
 //
+import form from './functions/form'
 import mediable from './functions/mediable'
 import themable from './functions/themable'
 
 export default {
   // Install plugin.
-  install: (app, options) => {
+  install: (app: any, options: any) => {
     // Components
     app.component('bouton', Bouton)
+    app.component('bulle', Bulle)
     app.component('checkbox', Checkbox)
+    app.component('disclaimer', Disclaimer)
     app.component('dropdown', Dropdown)
     app.component('field', Field)
     app.component('list', List)
@@ -36,6 +41,7 @@ export default {
     app.directive('ripple', Ripple)
     // Mix 
     app.use(Notification)
+    app.provide('form', form)
     // Others
     mediable()
     app.provide('themable', themable)

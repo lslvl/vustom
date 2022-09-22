@@ -8,7 +8,7 @@
   display: flex
   min-height: 2.6rem
   padding: 0 .75rem
-  transition: .3s
+  user-select: none
   &.hoverable:hover
     background-color: var(--#{$vustom-prefix}-fill-hover)
   &.clickable
@@ -41,8 +41,15 @@
       height: 1rem
   &.active
     background-color: var(--#{$vustom-prefix}-fill-hover) !important
+    font-weight: 500
   & .v-ripple__animation
     background-color: var(--#{$vustom-prefix}-color-8)
+  &.disabled
+    opacity: .5
+    pointer-events: none
+    & > .icon
+      color: var(--#{$vustom-prefix}-color-2)
+
   @each $color, $map in $colors-map
     &.#{$color}
       background-color: getColor($color, invertBase)
@@ -51,8 +58,8 @@
         background-color: opacify(getColor($color, invertBase), .05)
       & > .icon
         color: getColor($color, invertEl)
-  &.disabled
-    opacity: .5
-    pointer-events: none
-    & > .icon
-      color: var(--#{$vustom-prefix}-color-2)
+
+.list-group
+  display: flex
+  & > .list-item
+    flex: 1

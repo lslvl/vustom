@@ -1,0 +1,168 @@
+@import '../../sass/style.sass'
+
+$field-text-height: 3rem
+$field-text-radius: 10px
+$field-text-padding: .75rem
+
+input[type=text],
+input[type=email],
+input[type=password],
+input[type=number]
+  background-color: none
+  background-image: none
+  background: transparent
+  background-color: transparent
+  border: 0
+  border-radius: 0
+  box-shadow: none
+  color: var(--#{$vustom-prefix}-color)
+  font-family: 'Inter'
+  font-size: 1rem
+  font-weight: normal
+  outline: none
+  line-height: 1rem
+  letter-spacing: 0
+  padding: 0
+  position: relative
+  resize: none
+
+input[type=password]
+  font-size: .5rem
+  letter-spacing: 2px
+
+.field
+  align-items: flex-end
+  display: flex
+  border: none
+  height: $field-text-height
+  position: relative
+  &:focus-within
+    & .field-control__body
+      &::after
+        background-color: $primary
+    & .field-append,
+    & .field-prepend
+      color: $primary
+    & > .field-control
+      & > label
+        color: $primary !important
+  & .field-control__body
+    &::after
+      background: var(--#{$vustom-prefix}-fill-3-border)
+      display: block
+      content: ''
+      height: 1px
+      width: 100%
+      position: absolute
+      bottom: -1px
+      left: 0
+      z-index: 1
+      animation-duration: 1.5s
+      animation-iteration-count: infinite
+      animation-timing-function: linear
+      background-position: top left
+      background-repeat: no-repeat
+      background-size: 150% 150%
+  &.loading
+    & .field-control__body
+      &::after
+        animation-name: moveIndeterminate
+        background-color: getColor(primary, invertBase)
+        background-image: linear-gradient(to right, $primary 30%, getColor(primary, invertBase) 30%)
+  @each $color, $map in $colors-map
+    &.#{$color}
+      & > .field-control
+        & > label
+          color: getColor($color, base) !important
+        & > .field-control__body
+          flex: 1
+          & > input
+            caret-color: getColor($color, base) !important
+      &:focus-within
+        & .field-control__body
+          &::after
+            background-color: getColor($color, base)
+        & .field-append,
+        & .field-prepend
+          color: getColor($color, base)
+      &.loading
+        & .field-control__body
+          &::after
+            background-color: getColor($color, invertBase)
+            background-image: linear-gradient(to right, getColor($color, base) 30%, getColor($color, invertBase) 30%)
+  &.disabled
+    opacity: .3
+    border-bottom-color: transparent
+
+.field-tip
+  content: ''
+  display: block
+  color: var(--#{$vustom-prefix}-color-4)
+  font-size: var(--#{$vustom-prefix}-font-size-1)
+  position: absolute
+  top: .375rem
+  right: $field-text-padding
+
+.field-control
+  align-items: flex-end
+  display: flex
+  height: $field-text-height
+  flex: 1
+  position: relative
+  & > .field-control__body
+    flex: 1
+    & > input
+      box-sizing: border-box
+      caret-color: $primary
+      display: block
+      height: 2rem
+      padding-bottom: .125rem
+      width: 100%
+      &::placeholder
+        color: var(--#{$vustom-prefix}-color-4)
+        font-size: var(--#{$vustom-prefix}-font-size-3)
+  & > label
+    color: var(--#{$vustom-prefix}-color-7)
+    font-size: var(--#{$vustom-prefix}-font-size-4)
+    top: calc($field-text-height / 2)
+    transform: translateY(-50%)
+    display: inline
+    position: absolute
+    transition: .2s
+    transition-timing-function: ease-in-out
+    &.upper
+      color: var(--#{$vustom-prefix}-color-4)
+      font-size: var(--#{$vustom-prefix}-font-size-1)
+      top: 0
+      transform: translateY(0)
+
+.field-prepend,
+.field-append
+  align-items: center
+  color: var(--#{$vustom-prefix}-color-6)
+  display: flex
+  justify-content: center
+  height: 100%
+  padding: 0 .5rem
+  transition: .3s
+  min-width: 2.75rem
+  & > svg
+    height: 1.2rem
+
+.field-prepend
+  margin-right: .75rem
+
+.field-append
+  margin-left: .75rem
+
+.field-errors
+  margin: .5rem 0
+  font-size: var(--#{$vustom-prefix}-font-size-2)
+  & > .field-error
+    color: $danger
+
+@keyframes moveIndeterminate
+  from
+    background-position: 200% 0
+  to
+    background-position: -200% 0

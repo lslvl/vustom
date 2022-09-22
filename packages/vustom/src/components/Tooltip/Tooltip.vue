@@ -15,7 +15,7 @@
       <slot></slot>
     </div>
 
-    <span class="tooltip-arrow" :class="[
+    <span v-show="props.arrow" class="tooltip-arrow" :class="[
       arrowX,
       arrowY
     ]"></span>
@@ -32,7 +32,9 @@ const props = defineProps({
   raw: { type: Boolean, default: false },  // if true, dont show arrow or design
   color: String,
   delay: Number,
-  position: String
+  position: String,
+  gap: { type: Number, default: 10 },
+  arrow: { type: Boolean, default: true }
 })
 
 var tooltip = ref(null)
@@ -49,12 +51,13 @@ async function setPosition() {
   await nextTick()
 
   var args = {
-    gap: 10,
+    gap: props.gap,
     position: props.position || 'top'
   }
 
+  var rect = parent.value.getBoundingClientRect()
 
-  var kiv = keepInViewer(parent.value, tooltip.value, args)
+  var kiv = keepInViewer(rect, tooltip.value, args)
   top.value = kiv.top
   left.value = kiv.left
 

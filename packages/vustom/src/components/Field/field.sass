@@ -1,8 +1,4 @@
-@import '../../sass/style.sass'
-
-$field-text-height: 3rem
-$field-text-radius: 10px
-$field-text-padding: .75rem
+$fieldOutlineWidth: 2px
 
 input[type=text],
 input[type=email],
@@ -18,7 +14,7 @@ input[type=number]
   color: var(--#{$vustom-prefix}-color)
   font-family: 'Inter'
   font-size: 1rem
-  font-weight: 400
+  font-weight: normal
   outline: none
   line-height: 1rem
   letter-spacing: 0
@@ -34,138 +30,41 @@ input[type=password]
   align-items: flex-end
   display: flex
   border: none
-  height: $field-text-height
   position: relative
-  &:focus-within
-    & .field-control__body
-      &::after
-        background-color: $primary
-    & .field-append,
-    & .field-prepend
-      color: $primary
-    & > .field-control
-      & > label
-        color: $primary !important
-  & .field-control__body
-    &::after
-      background: var(--#{$vustom-prefix}-fill-3-border)
-      display: block
-      content: ''
-      height: 1px
-      width: 100%
-      position: absolute
-      bottom: -1px
-      left: 0
-      z-index: 1
-      animation-duration: 1.5s
-      animation-iteration-count: infinite
-      animation-timing-function: linear
-      background-position: top left
-      background-repeat: no-repeat
-      background-size: 150% 150%
-  &.loading
-    & .field-control__body
-      &::after
-        animation-name: moveIndeterminate
-        background-color: getColor(primary, invertBase)
-        background-image: linear-gradient(to right, $primary 30%, getColor(primary, invertBase) 30%)
-  @each $color, $map in $colors-map
-    &.#{$color}
-      & > .field-control
-        & > label
-          color: getColor($color, base) !important
-        & > .field-control__body
-          flex: 1
-          & > input
-            caret-color: getColor($color, base) !important
-      &:focus-within
-        & .field-control__body
-          &::after
-            background-color: getColor($color, base)
-        & .field-append,
-        & .field-prepend
-          color: getColor($color, base)
-      &.loading
-        & .field-control__body
-          &::after
-            background-color: getColor($color, invertBase)
-            background-image: linear-gradient(to right, getColor($color, base) 30%, getColor($color, invertBase) 30%)
-  &.disabled
-    opacity: .3
-    border-bottom-color: transparent
-
-.field-tip
-  content: ''
-  display: block
-  color: var(--#{$vustom-prefix}-color-4)
-  font-size: var(--#{$vustom-prefix}-font-size-1)
-  position: absolute
-  top: .375rem
-  right: $field-text-padding
+  & > .field-control
+    width: 100%
+    & > .field-control__body
+      & > input
+        background: var(--#{$vustom-prefix}-fill-1)
+        border: 1px solid var(--#{$vustom-prefix}-fill-1-border)
+        border-radius: 4px
+        width: 100%
+        padding: .5rem .75rem
+    &.disabled
+      opacity: .3
+      border-bottom-color: transparent
+    &:focus-within
+      & .field-control__body
+        & > input
+          border-color: $info
+          box-shadow: inset 0 0 0 1px $info !important
+    @each $color, $map in $colors-map
+      &.#{$color}
+        & > .field-control
+          & > label
+            color: getColor($color, base) !important
+          & > .field-control__body
+            & > input
+              border: 1px solid getColor($color, base)
+              // box-shadow: inset 0 0 0 1px getColor($color, base)
+        &:focus-within
+          & .field-control__body
+            & > input
+              border-color: $info
+              box-shadow: inset 0 0 0 1px $info !important
 
 .field-control
-  align-items: flex-end
-  display: flex
-  height: $field-text-height
-  flex: 1
-  position: relative
-  & > .field-control__body
-    flex: 1
-    & > input
-      box-sizing: border-box
-      caret-color: $primary
-      display: block
-      height: 2rem
-      font-weight: 500
-      padding-bottom: .125rem
-      width: 100%
-      &::placeholder
-        color: var(--#{$vustom-prefix}-color-4)
-        font-size: var(--#{$vustom-prefix}-font-size-3)
   & > label
-    color: var(--#{$vustom-prefix}-color-4)
-    font-size: var(--#{$vustom-prefix}-font-size-4)
-    font-weight: 400
-    top: calc($field-text-height / 2)
-    transform: translateY(-50%)
-    display: inline
-    position: absolute
-    transition: .2s
-    transition-timing-function: ease-in-out
-    &.upper
-      color: var(--#{$vustom-prefix}-color-4)
-      font-size: var(--#{$vustom-prefix}-font-size-1)
-      font-weight: 500
-      top: 0
-      transform: translateY(0)
-
-.field-prepend,
-.field-append
-  align-items: center
-  color: var(--#{$vustom-prefix}-color-6)
-  display: flex
-  justify-content: center
-  height: 100%
-  padding: 0 .5rem
-  transition: .3s
-  min-width: 2.75rem
-  & > svg
-    height: 1.2rem
-
-.field-prepend
-  margin-right: .75rem
-
-.field-append
-  margin-left: .75rem
-
-.field-errors
-  margin: .5rem 0
-  font-size: var(--#{$vustom-prefix}-font-size-2)
-  & > .field-error
-    color: $danger
-
-@keyframes moveIndeterminate
-  from
-    background-position: 200% 0
-  to
-    background-position: -200% 0
+    display: block
+    font-weight: 500
+    margin-bottom: .5rem

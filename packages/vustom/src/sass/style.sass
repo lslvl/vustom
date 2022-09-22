@@ -23,7 +23,7 @@ body[theme=light]
   --#{$vustom-prefix}-fill-3: hsl(240,2%,92%)
   --#{$vustom-prefix}-fill-4: hsl(240,2%,88%)
 
-  --#{$vustom-prefix}-fill-hover: #F8F8F8
+  --#{$vustom-prefix}-fill-hover: #F4F4F5
   --#{$vustom-prefix}-fill-1-hover: #F4F4F5
   --#{$vustom-prefix}-fill-2-hover: #D5D5D5
   --#{$vustom-prefix}-fill-3-hover: #D4D4D6
@@ -45,8 +45,8 @@ body[theme=light]
   --#{$vustom-prefix}-shadow-8: 0 0 19px rgba(0,0,0,.4)
   --#{$vustom-prefix}-shadow-9: 0 0 20px rgba(0,0,0,.45)
 
-  --#{$vustom-prefix}-color: hsl(200, 6%, 0%)
-  --#{$vustom-prefix}-color-1: hsl(200, 6%, 10%)
+  --#{$vustom-prefix}-color: hsl(200, 6%, 10%)
+  --#{$vustom-prefix}-color-1: hsl(200, 6%, 15%)
   --#{$vustom-prefix}-color-2: hsl(200, 6%, 20%)
   --#{$vustom-prefix}-color-3: hsl(200, 6%, 30%)
   --#{$vustom-prefix}-color-4: hsl(200, 6%, 40%)
@@ -54,6 +54,7 @@ body[theme=light]
   --#{$vustom-prefix}-color-6: hsl(200, 6%, 60%)
   --#{$vustom-prefix}-color-7: hsl(200, 6%, 70%)
   --#{$vustom-prefix}-color-8: hsl(200, 6%, 80%)
+  --#{$vustom-prefix}-color-9: hsl(200, 6%, 90%)
 
 body[theme=dark]
   --#{$vustom-prefix}-fill: hsla(#{$color-h}, #{$color-s}%, 14%, 1)
@@ -93,6 +94,7 @@ body[theme=dark]
   --#{$vustom-prefix}-color-6: hsl(200, 6%, 30%)
   --#{$vustom-prefix}-color-7: hsl(200, 6%, 20%)
   --#{$vustom-prefix}-color-8: hsl(200, 6%, 10%)
+  --#{$vustom-prefix}-color-9: hsl(200, 6%, 5%)
 
 @function getColor($scheme, $tone: base)
   @return map-get(map-get($colors-map, $scheme), $tone)

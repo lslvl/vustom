@@ -6,9 +6,9 @@ $tooltip-background: var(--#{$vustom-prefix}-fill)
   border-radius: 3px
   font-size: 1rem
   position: fixed
-  visibility: hidden
+  display: none
   max-width: 22rem
-  z-index: 10000
+  z-index: 10000 !important
   &.raw
     max-width: 100%
     & .tooltip-arrow
@@ -19,7 +19,7 @@ $tooltip-background: var(--#{$vustom-prefix}-fill)
       border-radius: 0
       padding: 0
   &.active
-    visibility: visible
+    display: block
   .tooltip-inner
     background: var(--#{$vustom-prefix}-fill)
     box-shadow: var(--#{$vustom-prefix}-shadow-2)

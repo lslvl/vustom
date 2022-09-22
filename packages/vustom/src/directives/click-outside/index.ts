@@ -3,7 +3,7 @@ const HAS_WINDOWS = typeof window !== 'undefined'
 const HAS_NAVIGATOR = typeof navigator !== 'undefined'
 const IS_TOUCH =
   HAS_WINDOWS && ('ontouchstart' in window || (HAS_NAVIGATOR && navigator.msMaxTouchPoints > 0))
-const EVENTS = IS_TOUCH ? ['touchstart'] : ['click']
+const EVENTS = IS_TOUCH ? ['touchstart'] : ['click', 'contextmenu']
 
 // IMPORTANT
 // Has to be used with v-if and not v-show. It is mounted only v-if == true.

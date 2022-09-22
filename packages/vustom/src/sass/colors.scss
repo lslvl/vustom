@@ -1,58 +1,49 @@
 // Custom all vustom variables
-$primary: rgb(66,161,240) !default;
-$secondary: rgb(217,25,198) !default;
-$tertiary: rgb(100,25,198) !default;
-$success: rgb(31,221,166) !default;
-$danger: #EE3450 !default;
-$alert: rgb(255,152,90) !default;
-$info: rgb(66,161,240) !default;
-
+$primary: rgb(0, 0, 0) !default;
+$secondary: #23aaec !default;
+$tertiary: #8469e3 !default;
+$success: #23c462 !default;
+$danger: #e11634 !default;
+$alert: rgb(255, 152, 90) !default;
+$info: rgb(66, 161, 240) !default;
 $light-ratio: 20 !default;
 $dark-ratio: 10 !default;
 $transparent-ratio: .85 !default;
-
-$primary-content: black !default;
+$primary-content: white !default;
 $primary-extra-content: black !default;
 $primary-invert: transparentize($primary, $transparent-ratio) !default;
-$primary-invert-content: darken($primary, 22) !default;
+$primary-invert-content: darken($primary, 10) !default;
 $primary-invert-extra-content: darken($primary, 22) !default;
-
 $secondary-content: white !default;
-$secondary-extra-content: rgb(67,77,95) !default;
+$secondary-extra-content: rgb(67, 77, 95) !default;
 $secondary-invert: transparentize($secondary, $transparent-ratio) !default;
 $secondary-invert-content: $secondary !default;
 $secondary-invert-extra-content: $secondary !default;
-
 $tertiary-content: white !default;
-$tertiary-extra-content: rgb(67,77,95) !default;
-$tertiary-invert: transparentize($secondary, $transparent-ratio) !default;
-$tertiary-invert-content: $secondary !default;
-$tertiary-invert-extra-content: $secondary !default;
-
+$tertiary-extra-content: rgb(67, 77, 95) !default;
+$tertiary-invert: transparentize($tertiary, $transparent-ratio) !default;
+$tertiary-invert-content: $tertiary !default;
+$tertiary-invert-extra-content: $tertiary !default;
 $success-content: white !default;
 $success-extra-content: lighten($success, $light-ratio) !default;
 $success-invert: transparentize($success, $transparent-ratio) !default;
 $success-invert-content: rgb(10, 179, 130) !default;
 $success-invert-extra-content: rgb(10, 179, 130) !default;
-
 $danger-content: white !default;
 $danger-extra-content: lighten($danger, $light-ratio) !default;
 $danger-invert: transparentize($danger, .9) !default;
 $danger-invert-content: #e62c2c !default;
 $danger-invert-extra-content: #e62c2c !default;
-
 $alert-content: white !default;
 $alert-extra-content: lighten($alert, $light-ratio) !default;
 $alert-invert: transparentize($alert, $transparent-ratio) !default;
 $alert-invert-content: $alert !default;
 $alert-invert-extra-content: $alert !default;
-
 $info-content: white !default;
 $info-extra-content: lighten($info, $light-ratio) !default;
 $info-invert: transparentize($info, $transparent-ratio) !default;
 $info-invert-content: $info !default;
 $info-invert-extra-content: $info !default;
-
 // base: the given color
 // el: content over the base
 // extra: could be an icon close to el
@@ -73,11 +64,13 @@ $colors-map: (
     invertBase: $secondary-invert,
     invertEl: $secondary-invert-content
   ),
-  tertiary: (base: $tertiary,
+  tertiary: (
+    base: $tertiary,
     el: $tertiary-content,
     extra: $tertiary-extra-content,
     invertBase: $tertiary-invert,
-    invertEl: $tertiary-invert-content),
+    invertEl: $tertiary-invert-content
+  ),
   success: (
     base: $success,
     el: $success-content,

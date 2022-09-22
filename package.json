@@ -1,21 +1,26 @@
 {
-  "name": "@lslvl/vustom",
-  "version": "1.0.1",
-  "description": "...coming soon",
-  "author": "Louis Laviale <louis.laviale@gmail.com>",
-  "main": "packages/vustom/src/install.ts",
-  "repository": "git://github.com/lslvl/vustom.git",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
-  "dependencies": {
-    "mitt": "^3.0.0"
-  },
-  "devDependencies": {
-    "vue": "^3.2.33"
-  },
-  "engines": {
-    "node": "17.9.0",
-    "npm": "8.5.5"
-  }
+    "name": "@lslvl/vustom",
+    "version": "1.0.2",
+    "description": "...coming soon",
+    "author": "Louis Laviale <louis.laviale@gmail.com>",
+    "main": "packages/vustom/src/install.ts",
+    "repository": "git://github.com/lslvl/vustom.git",
+    "scripts": {
+        "build": "sass --no-source-map --style=compressed packages/vustom/src/sass/vustom.sass:build/css/vustom.css"
+    },
+    "publishConfig": {
+        "registry": "https://npm.pkg.github.com"
+    },
+    "dependencies": {
+        "lodash": "^4.17.21",
+        "mitt": "^3.0.0",
+        "sass": "^1.54.0"
+    },
+    "devDependencies": {
+        "vue": "^3.2.33"
+    },
+    "engines": {
+        "node": "17.9.0",
+        "npm": "8.5.5"
+    }
 }

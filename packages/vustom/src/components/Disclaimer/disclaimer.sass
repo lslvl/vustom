@@ -1,0 +1,23 @@
+@import '../../sass/style.sass'
+
+.disclaimer
+  align-items: flex-start
+  background-color: var(--#{$vustom-prefix}-fill)
+  border: 1px solid var(--#{$vustom-prefix}-fill-border)
+  border-radius: 5px
+  color: var(--#{$vustom-prefix}-color)
+  display: flex
+  padding: 1rem
+  & > .icon
+    height: 1rem
+    margin-right: 1rem
+    margin-top: .15rem
+    & > svg
+      height: 100%
+  @each $color, $map in $colors-map
+    &.#{$color}
+        background-color: getColor($color, invertBase)
+        border-color: getColor($color, invertEl)
+        & > .icon
+            & > svg
+                stroke: getColor($color, invertEl)

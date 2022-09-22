@@ -7,6 +7,7 @@
       !($slots.control) ? 'hoverable' : '',
       (!$slots.control &&  $slots.content) ? 'not-centered-v' : '',
       disabled ? 'disabled' : '',
+      active ? 'active' : '',
       color
     ]">
     <div class="icon" v-if="$slots.icon">
@@ -30,5 +31,9 @@
 </template>
 
 <script setup>
-const props = defineProps(['color', 'disabled'])
+const props = defineProps({
+  color: String,
+  disabled: Boolean,
+  active: Boolean
+})
 </script>

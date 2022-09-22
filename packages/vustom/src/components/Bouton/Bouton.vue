@@ -6,6 +6,7 @@
       loading ? 'loading' : '',
       disabled ? 'disabled' : '',
       transparent ? 'transparent' : '',
+      reverse ? 'reverse' : '',
       rounded ? 'rounded' : '',
       iconly ? 'iconly' : '',
       outlined ? 'outlined' : '',
@@ -14,8 +15,9 @@
       small ? 'small' : '',
       large ? 'large' : '',
       huge ? 'huge' : '',
-      block ? 'block' : '',
-      color]"
+      block ? 'bouton--block' : '',
+      color,
+      shadow ? 'shadow-'+shadow : '']"
     :disabled="disabled"
     :type="type">
     <div class="icon" v-if="$slots.icon">
@@ -32,6 +34,7 @@ const props = defineProps({
   loading: Boolean,
   disabled: Boolean,
   transparent: Boolean,
+  reverse: Boolean,
   iconly: Boolean,
   rounded: Boolean,
   outlined: Boolean,
@@ -41,6 +44,7 @@ const props = defineProps({
   large: Boolean,
   huge: Boolean,
   block: Boolean,
-  type: { type: String, default: 'button'}
+  type: { type: String, default: 'button'},
+  shadow: String
 })
 </script>

@@ -1,0 +1,26 @@
+$linkPaddingX: 3px
+$linkPaddingY: 2px
+$linkBackgroundOpacity: .2
+$linkBorderRadius: 2px
+
+.link
+    color: var(--#{$vustom-prefix}-color)
+    cursor: pointer
+    font-weight: 500
+    position: relative
+    text-decoration: underline
+    &::before
+        background-color: var(--#{$vustom-prefix}-color)
+        border-radius: $linkBorderRadius
+        content: ''
+        display: none
+        opacity: $linkBackgroundOpacity
+        position: absolute
+        top: -$linkPaddingY
+        left: -$linkPaddingX
+        right: -$linkPaddingX
+        bottom: -$linkPaddingY
+    &:hover
+        text-decoration: none
+        &::before
+            display: block

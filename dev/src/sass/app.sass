@@ -1,0 +1,40 @@
+@import 'custom_vustom.sass'
+@import 'fonts.sass'
+
+body
+  background-color: var(--vustom-fill)
+  color:  var(--vustom-color)
+  font-family: 'Inter'
+  font-size: 15px
+  overflow-y: auto
+
+.app
+  display: flex
+
+.app-nav
+  background-color: var(--vustom-fill-1)
+  border-right: 1px solid var(--vustom-fill-1-border)
+  padding: 2rem 1rem
+  width: 16rem
+  & h1
+    margin-bottom: 2rem
+    & svg
+      height: 4rem
+  & > ul
+    display: flex
+    flex-direction: column
+    margin-top: 2rem
+
+.app-body
+  flex: 1
+  height: 100vh
+  overflow-y: auto
+  padding: 2rem
+
+.app-container
+  margin: 4rem
+  max-width: 50rem
+
+.app-themes__switch
+  position: relative
+  z-index: 9999
