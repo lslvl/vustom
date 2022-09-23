@@ -1,6 +1,6 @@
 <template>
     
-    A bulle is just an element sticking to another element
+    A bulle is just an element sticking to another element but staying in the screen as much as it can.
 
     <br><br>
 
